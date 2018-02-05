@@ -59,7 +59,7 @@
 <body>
 
 <div id="formbackground" style="position:absolute; width:100%; height:100%; z-index:-1">
-    <img src="../../img/首页.png" height="100%" width="100%"/>
+    <img src="../../img/home.png" height="100%" width="100%"/>
 </div>
 <div id="loginForm" style="border-radius: 30px">
 
@@ -68,7 +68,7 @@
 
         <table id="loginTable" style="border-radius: 20px">
             <tr id="top">
-                <td><img src="../../img/登录表单logo.png" height="20px" style="border-top-left-radius: 20px"></td>
+                <td><img src="../../img/loginLogo.png" height="20px" style="border-top-left-radius: 20px"></td>
                 <td id="bg" colspan="2"></td>
             </tr>
 
@@ -102,7 +102,7 @@
             </tr>
 
         </table>
-        <a href="../../pages/home.jsp">点击跳转</a>
+        <a href="/home">点击跳转</a>
     </form>
 </div>
 

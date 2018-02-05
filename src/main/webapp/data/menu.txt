@@ -10,5 +10,5 @@
 	{ id: "editRight", pid: "right", text: "操作权限", iconCls: "Reports", url: "../buttonedit/selectGrid.html"},
 
     { id: "clazz", text: "科研项目管理"},
-    { id: "queryRight", pid: "clazz", text: "个人工作平台",url: "/pages/personCenter.jsp"}
+    { id: "queryRight", pid: "clazz", text: "个人工作平台",url: "/personCenter"}
 ]

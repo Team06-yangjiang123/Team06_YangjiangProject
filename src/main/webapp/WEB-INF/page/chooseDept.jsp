@@ -10,10 +10,10 @@
 <head>
     <title></title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link href="../css/demo.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/demo.css" rel="stylesheet" type="text/css" />
 
 
-    <script src="../scripts/boot.js" type="text/javascript"></script>
+    <script src="../../scripts/boot.js" type="text/javascript"></script>
 
 
     <style type="text/css">
@@ -36,9 +36,9 @@
 
         <div property="columns">
 
-            <div field="loginname" width="120" headerAlign="center" allowSort="true">编号</div>
-            <div field="name" width="100%" headerAlign="center" allowSort="true">姓名</div>
-            <div field="loginname" width="120" headerAlign="center" allowSort="true">部门</div>
+            <div field="loginname" width="120" headerAlign="center" allowSort="true">学生编号</div>
+            <div field="name" width="100%" headerAlign="center" allowSort="true">学生姓名</div>
+            <div field="loginname" width="120" headerAlign="center" allowSort="true">所属班级</div>
         </div>
     </div>
 
@@ -56,7 +56,7 @@
         //动态设置URL
         //        grid.setUrl("../data/AjaxService.jsp?method=SearchEmployees");
         //也可以动态设置列 grid.setColumns([]);
-        var data = [{"loginname":"1","name":"张小跳","createtime":"J0703"},
+        var data = [{"loginname":"1","name":"审批部","createtime":"J0703"},
             {"loginname":"2","name":"王大锤","createtime":"J1005"},
             {"loginname":"3","name":"李大稳","createtime":"J0804"},
             {"loginname":"4","name":"赵小六","createtime":"J1106"}];

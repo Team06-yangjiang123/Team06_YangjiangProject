@@ -7,9 +7,9 @@
 <head>
     <title>基本</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <link href="css/demo.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/demo.css" rel="stylesheet" type="text/css"/>
 
-    <script src="../scripts/boot.js" type="text/javascript"></script>
+    <script src="../../scripts/boot.js" type="text/javascript"></script>
     <style>
 
         table, td {
@@ -60,12 +60,12 @@
     <table width="100%">
         <tr class="header">
             <td colspan="4" id="td1" style="background: linear-gradient(#ddf3ff, #dbedff, #c9eaff, #cfe4ff);">
-                <img src="/img/定位图标.png" style="width: 13px;height: 13px">&nbsp;当前位置：个人工作台 >> 代办任务
+                <img src="../../img/position.png" style="width: 13px;height: 13px">&nbsp;当前位置：个人工作台 >> 代办任务
             </td>
         </tr>
         <tr>
             <td class="lefttd" colspan="4" style="background: linear-gradient(#c1eaff, #c6e7ff, #8fdbff, #d2ecff);">
-                &nbsp;&nbsp;&nbsp;<img src="/img/指向下.png" style="width: 13px;height: 13px">查询条件
+                &nbsp;&nbsp;&nbsp;<img src="../../img/down.png" style="width: 13px;height: 13px">查询条件
             </td>
         </tr>
         <tr>
@@ -105,7 +105,7 @@
         <tr>
             <td colspan="4" class="content" style="text-align: right">
 
-                <button class="btn1" type="button" name="search"><img src="/img/查询.png" style="width: 16px;height: 16px">查询</button>
+                <button class="btn1" type="button" name="search"><img src="../../img/query.png" style="width: 16px;height: 16px">查询</button>
             </td>
 
 
@@ -119,7 +119,7 @@
     <div class="mini-fit" style="height:100px;">
 
         <div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;"
-             url="../data/AjaxService.aspx?method=SearchEmployees"  idField="id"
+             url="../../data/AjaxService.aspx?method=SearchEmployees"  idField="id"
              sizeList="[5,10,20,50]" pageSize="10">
             <div property="columns">
                 <div type="checkcolumn" ></div>
@@ -154,7 +154,7 @@
 
         var btnEdit = this;
         mini.open({
-            url: "selectPerson.jsp",
+            url: "/selectPerson",
             title: "选择申请人",
             width: 550,
             height: 380,

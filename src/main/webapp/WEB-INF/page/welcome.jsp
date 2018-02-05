@@ -13,7 +13,7 @@
 <body>
     <div style="text-align: center; width: 100%;height: 100%;background: linear-gradient(#2fa3ff,#bedeff,#4798ff)">
         <div style="width: 10px;height: 30%"></div>
-        <img src="../img/欢迎页图标.png">
+        <img src="../../img/welcome.png">
         <h1>欢迎登录本系统</h1>
     </div>
 </body>

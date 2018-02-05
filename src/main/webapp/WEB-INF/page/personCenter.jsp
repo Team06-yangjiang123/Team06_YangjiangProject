@@ -12,16 +12,16 @@
     <title>个人中心</title>
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <link href="../css/demo.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/demo.css" rel="stylesheet" type="text/css"/>
 
-    <script src="../scripts/boot.js" type="text/javascript"></script>
-    <script src="../js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../../scripts/boot.js" type="text/javascript"></script>
+    <script src="../../js/jquery.cookie.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="tabs1" class="mini-tabs"
      activeIndex="0"
      style="width:100%;height:100%; background: linear-gradient(#c6e5ff,#cee6ff,#c2e3ff)"
-     url="../data/tabs.txt"
+     url="../../data/tabs.txt"
      onactivechanged="onActiveChanged">
 </div>
 

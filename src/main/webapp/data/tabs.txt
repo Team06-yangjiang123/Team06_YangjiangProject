@@ -1,4 +1,4 @@
 [
-	{title: "代办任务", url: "/pages/project_base.jsp"},
-	{title: "已办任务", url: "/pages/project_other.jsp"}
+	{title: "代办任务", url: "/projectBase"},
+	{title: "已办任务", url: "/projectOther"}
 ]
