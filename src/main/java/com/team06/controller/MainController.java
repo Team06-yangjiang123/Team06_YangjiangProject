@@ -48,4 +48,16 @@ public class MainController {
     public String chooseDept(){
         return "chooseDept";
     }
+
+    @RequestMapping(value = "/contractFlowReport")
+    public String contractFlowReport(){
+        return "contractFlow_report";
+    }
+
+    @RequestMapping(value = "/technicalManager")
+    public String technicalManager(){
+        return "technical_manager";
+    }
+
+
 }
