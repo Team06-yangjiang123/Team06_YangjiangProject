@@ -79,26 +79,26 @@
             </td>
             <td class="content">关键字</td>
             <td>
-                <input id="tbl1" name="tb" class="mini-autocomplete" required="true" style="width:200px;"
-                       valueField="id" textField="text"
-                       url="#" value="#"/>
+                <input type="text" name="keyword" style="width: 70%;height: 100%">
             </td>
         </tr>
 
         <tr>
             <td class="content">申请人</td>
-            <td class="righttd" style="width: 40%">
-                <input id="pensonSel" class="mini-datepicker"
-                       style="width:70%;height:100%;"
-                       allowInput="false"
-                <%--onbuttonclick="onStudentButtonEdit"--%>
-                       name="sid" textName="sname"/>
+            <td class="trTitle">
+                <input id="btnEdit2"
+                       class="mini-buttonedit"
+                       onbuttonclick="onButtonEdit"
+                       name="a" textName="b" style="width: 70%;height: 100%"/>
+
             </td>
             <td class="content">所属部门</td>
-            <td>
-                <input id="tbl2" name="tb" class="mini-autocomplete" required="true" style="width:200px;"
-                       valueField="id" textField="text"
-                       url="#" value="#"/>
+            <td class="trTitle">
+                <input id="btnEdit3"
+                       class="mini-buttonedit"
+                       onbuttonclick="onButtonEdit"
+                       name="a" textName="b" style="width: 70%;height: 100%"/>
+
             </td>
         </tr>
 
@@ -116,60 +116,25 @@
 
 
 
-<div id="datagrid1" class="mini-datagrid" style="width:100%;height: 200px"
-     <%--url="#" --%>
-     idField="id"
-     allowResize="true" pageSize="20"
-     allowCellEdit="true" allowCellSelect="true" multiSelect="true"
-     allowCellValid="true" oncellvalidation="onCellValidation">
-    <div property="columns">
-        <div type="checkcolumn"></div>
-        <div field="processNumber" vtype="required" width="120" headerAlign="center" allowSort="true">流程编号
-            <input property="editor" class="mini-textbox" style="width:100%;" />
-        </div>
-        <div field="processName" vtype="required" width="100" renderer="onGenderRenderer" align="center" headerAlign="center">流程名称
-            <input property="editor" class="mini-textbox" style="width:100%;" data="processName"/>
-        </div>
-        <div field="dept" vtype="required;int" width="100" allowSort="true" align="center" headerAlign="center">所属部门
-            <input property="editor" class="mini-textbox" minValue="0" maxValue="200" value="25" style="width:100%;"/>
-        </div>
-        <div field="current" vtype="required" width="100" allowSort="true" align="center" headerAlign="center">当前环节
-            <input property="editor" class="mini-textbox" style="width:100%;"/>
-        </div>
-        <div field="applyPerson"  width="120" headerAlign="center" allowSort="true" align="center">提报人
-            <input property="editor" class="mini-textbox" style="width:100%;" minHeight="80"/>
-        </div>
-        <div field="applyDate" vtype="required;date" width="100" headerAlign="center" align="center" dateFormat="yyyy-MM-dd" allowSort="true">申报时间</div>
+    <div class="mini-fit" style="height:100px;">
 
-        <div field="operation" vtype="required" width="100" renderer="onGenderRenderer" align="center" headerAlign="center">操作
-            <input property="editor" class="mini-textbox" style="width:100%;" data="operation"/>
+        <div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;"
+             url="../data/AjaxService.aspx?method=SearchEmployees"  idField="id"
+             sizeList="[5,10,20,50]" pageSize="10">
+            <div property="columns">
+                <div type="checkcolumn" ></div>
+                <div field="num" width="120" headerAlign="center" allowSort="true" align="center">流程编号</div>
+                <div field="name" width="120" headerAlign="center" allowSort="true" align="center">流程名称</div>
+                <div field="dept" width="100" renderer="onGenderRenderer" align="center" headerAlign="center">所属部门</div>
+                <div field="salary" width="100" allowSort="true" align="center" headerAlign="center">当前环节</div>
+                <div field="person" width="100" allowSort="true" align="center" headerAlign="center">提报人</div>
+                <div field="applytime" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" align="center">申报时间</div>
+                <div field="operation" width="100" headerAlign="center" allowSort="true" align="center">操作</div>
+            </div>
         </div>
+
     </div>
 
-    <div property="content">
-        <div type="checkcolumn"></div>
-        <div field="processNumber" vtype="required" width="120" headerAlign="center" allowSort="true">254637367
-            <input property="editor" class="mini-textbox" style="width:100%;" />
-        </div>
-        <div field="processName" vtype="required" width="100" renderer="onGenderRenderer" align="center" headerAlign="center">消防系统隔离申请
-            <input property="editor" class="mini-textbox" style="width:100%;" data="processName"/>
-        </div>
-        <div field="dept" vtype="required;int" width="100" allowSort="true" align="center" headerAlign="center">后勤部
-            <input property="editor" class="mini-textbox" minValue="0" maxValue="200" value="25" style="width:100%;"/>
-        </div>
-        <div field="current" vtype="required" width="100" allowSort="true" align="center" headerAlign="center">工业安全审批科
-            <input property="editor" class="mini-textbox" style="width:100%;"/>
-        </div>
-        <div field="applyPerson"  width="120" headerAlign="center" allowSort="true" align="center">张三
-            <input property="editor" class="mini-textbox" style="width:100%;" minHeight="80"/>
-        </div>
-        <div field="applyDate" vtype="required;date" width="100" headerAlign="center" align="center" dateFormat="yyyy-MM-dd" allowSort="true">2018/02/04 18:10</div>
-
-        <div field="operation" vtype="required" width="100" renderer="onGenderRenderer" align="center" headerAlign="center">
-            <input property="editor" class="mini-textbox" style="width:100%;" data="operation"/>
-        </div>
-    </div>
-</div>
 
 </div>
 <script type="text/javascript">
@@ -231,6 +196,30 @@
 
     }
 
+    function onButtonEdit(e) {
+
+        var btnEdit = this;
+        mini.open({
+            url: "selectPerson.jsp",
+            title: "选择申请人",
+            width: 550,
+            height: 380,
+            ondestroy: function (action) {
+                //if (action == "close") return false;
+                if (action == "ok") {
+                    var iframe = this.getIFrameEl();
+                    var data = iframe.contentWindow.GetData();
+                    data = mini.clone(data);    //必须
+                    if (data) {
+                        btnEdit.setValue(data.id);
+                        btnEdit.setText(data.name);
+                    }
+                }
+
+            }
+        });
+
+    }
 </script>
 
 <script type="text/javascript">

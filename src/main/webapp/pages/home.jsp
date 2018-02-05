@@ -27,11 +27,19 @@
 
     </style>
 </head>
-<body>
+<body style="background-color: #0b549a">
 
 <div id="layout1" class="mini-layout" style="width:100%;height:100%;">
-    <div class="header" region="north" height="70" showSplit="false" showHeader="false">
-        <img src=../img/页头.png style="position: absolute;width: 100%;height: 100%">
+    <div class="header" region="north" height="55%" showSplit="false" showHeader="false">
+        <img src=../img/页头_meitu_1.png style="position: absolute;width: 100%;height: 100%">
+        <img src="/img/用户图标.png" style="width: 20px;height: 20px;position: absolute;z-index: 2; left: 55%;top: 7%">
+        <span style="position: absolute;z-index: 2;font-size: 10px;left: 56.5%;top: 7%;">当前用户：${"#"}</span>
+
+        <img src="/img/开关.png" style="width: 16px;height: 16px;position: absolute;z-index: 2; left: 84%;top: 7%">
+        <span style="position: absolute;left: 85.7%;top: 7%;z-index: 2"><a href="#" style="font-size: 10px;text-decoration: none;color: #0b93d9">退出登录</a></span>
+
+        <img src="/img/客服.png" style="width: 20px;height: 20px;position: absolute;z-index: 2; left: 90%;top: 7%">
+        <span style="position: absolute;left: 91.5%;top: 7%;z-index: 2"><a href="#" style="font-size: 10px;text-decoration: none;color: #529bff">联系客服妹妹</a></span>
     </div>
     <div title="south" region="south" showSplit="false" showHeader="false" height="30">
         <div style="line-height:28px;text-align:center;cursor:default">Copyright © 蓝鸥科技有限公司版权所有</div>
@@ -43,7 +51,8 @@
              onitemselect="onItemSelect"
              idField="id" parentField="pid"
              textField="text"
-             borderStyle="border:0">
+             borderStyle="border:0"
+             style="background: linear-gradient(#a4c9ff,#77c2ff,#78beff,#c7e1ff)">
         </div>
 
     </div>
