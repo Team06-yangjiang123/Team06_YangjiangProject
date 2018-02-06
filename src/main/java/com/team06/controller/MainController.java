@@ -48,4 +48,26 @@ public class MainController {
     public String chooseDept(){
         return "chooseDept";
     }
+
+    @RequestMapping(value = "/integratedQuery")
+    public String integratedQuery(){
+        return "integrated_query";
+    }
+
+    @RequestMapping(value = "/satellite")
+    public String satellite(){
+        return "satellite";
+    }
+
+    @RequestMapping(value = "/crew")
+    public String crew(){
+        return "crew";
+    }
+
+    @RequestMapping(value = "/plant")
+    public String plant(){
+        return "plant";
+    }
+
+
 }
