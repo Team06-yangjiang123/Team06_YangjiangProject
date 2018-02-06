@@ -42,7 +42,7 @@
 <body>
 <div style="width: 100%">
     <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
-        <div style="background-color:#ccebfa "><font size="2">当前位置:综合管理>>查询位置</font></div>
+        <div style="background-color:#ccebfa "><font size="2">当前位置:综合管理>>流程查询</font></div>
         <div id="panel1" class="mini-panel" title="查询条件" iconCls="icon-add"
              style="width:100%; background-color: #cbe1fa"
              showToolbar="false" showCollapseButton="false" showFooter="false" allowResize="false"
@@ -114,51 +114,51 @@
 <script type="text/javascript">
     mini.parse();
 
-    //查询
-    var grid = mini.get("datagrid1");
-
-    grid.load();
-
-
-    function search() {
-        var key = document.getElementById("key").value;
-        grid.load({key: key});
-    }
-    $("#key").bind("keydown", function (e) {
-        if (e.keyCode == 13) {
-            search();
-        }
-    });
-
-    //申请人
-    function onButtonEdit(e) {
-        var buttonEdit = e.sender;
-
-        var win = new UserSelectWindow();
-        win.set({
-            url:"",
-            title: "用户选择",
-            width: 600,
-            height: 350
-        });
-
-        win.show();
-        win.search();
-
-        //初始化数据
-        win.setData(null, function (action) {
-            if (action == "ok") {
-                //获取数据
-                var row = win.getData();
-                if (row) {
-                    buttonEdit.setValue(row.id);
-                    buttonEdit.setText(row.name);
-
-                    alert("选中记录: " + row.name);
-                }
-            }
-        });
-    }
+//    //查询
+//    var grid = mini.get("datagrid1");
+//
+//    grid.load();
+//
+//
+//    function search() {
+//        var key = document.getElementById("key").value;
+//        grid.load({key: key});
+//    }
+//    $("#key").bind("keydown", function (e) {
+//        if (e.keyCode == 13) {
+//            search();
+//        }
+//    });
+//
+//    //申请人
+//    function onButtonEdit(e) {
+//        var buttonEdit = e.sender;
+//
+//        var win = new UserSelectWindow();
+//        win.set({
+//            url:"",
+//            title: "用户选择",
+//            width: 600,
+//            height: 350
+//        });
+//
+//        win.show();
+//        win.search();
+//
+//        //初始化数据
+//        win.setData(null, function (action) {
+//            if (action == "ok") {
+//                //获取数据
+//                var row = win.getData();
+//                if (row) {
+//                    buttonEdit.setValue(row.id);
+//                    buttonEdit.setText(row.name);
+//
+//                    alert("选中记录: " + row.name);
+//                }
+//            }
+//        });
+//    }
 
 
 </script>

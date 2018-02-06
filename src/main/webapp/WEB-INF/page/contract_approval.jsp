@@ -1,56 +1,57 @@
 <%--
   Created by IntelliJ IDEA.
   User: dllo
-  Date: 18/2/5
-  Time: 下午3:17
+  Date: 18/2/6
+  Time: 下午4:22
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>科研项目合同推荐申报</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>科研项目合同审批页面</title>
     <link href="../../css/demo.css" rel="stylesheet" type="text/css"/>
     <script src="../../scripts/boot.js" type="text/javascript"></script>
     <script src="../../js/ajaxfileupload.js" type="text/javascript"></script>
-    <script src="../../js/jquery.cookie.js" type="text/javascript"></script>
-    <style type="text/css">
-        table{
-            font-size: small;
-            font-family: "Heiti SC";
-            background-color:aliceblue;
-            width: 100%;
-        }
+    <script src="../../js/jquery.cookie.js" type="text/javascript"></script><style type="text/css">
+    table, td {
+        font-size: small;
+        font-family: "Heiti SC";
+        background-color:aliceblue;
+        border: 1px solid white;
+        border-collapse: collapse;
+        padding: 5px;
+        width: 100%;
+        margin: 10px;
+    }
 
-        td {
-            width: auto;
-            padding: 5px;
-        }
+    td {
+        width: auto;
+    }
 
-        /*input {*/
-            /*width: 100%;*/
-            /*height: 100%;*/
-        /*}*/
+    .t {
+        text-align: right;
+        width: 100px;
+    }
 
-        .t {
-            text-align: right;
-            width: 100px;
-        }
+    span {
+        color: red;
+    }
+    .title1{
+        background: linear-gradient(#e1f5ff, #c9eaff, #cbe1ff);
+        padding: 10px;
+    }
+    input{
+        allowInput:"false"
+    }
+</style>
 
-        span {
-            color: red;
-        }
-        .title1{
-            background: linear-gradient(#e1f5ff, #c9eaff, #cbe1ff);
-            padding: 10px;
-        }
-    </style>
 </head>
 <body>
+
 <div id="form1">
     <table>
         <tr>
-            <td colspan="4">当前位置:科研项目合同推荐申报</td>
+            <td colspan="4">当前位置:科研项目合同审批页面</td>
 
         </tr>
         <tr>
@@ -146,28 +147,28 @@
             </td>
         </tr>
         <tr>
-            <td class="t">运作说明</td>
+            <td class="t">附件</td>
             <td>
-                <div id="upload">
-                    <input class="mini-htmlfile" name="Fdata" style="width:90%;" />
-                </div>
+                <a href="">运作说明.doc</a>
             </td>
         </tr>
         <tr>
-            <td colspan="4" class="title1">流程信息</td>
+            <td colspan="4" class="title1">审批意见</td>
         </tr>
-        <tr>
-            <td class="t">技术部经理</td>
+        <tr >
+            <td class="t">审批意见</td>
             <td>
-                <input id="btnEdit1" class="mini-buttonedit" onbuttonclick="onButtonEdit" name="a" textName="b"style="width: 100%"
-                       allowInput="false"/>
+                <input name="" class="mini-textarea" style="width:80%;height:60px;"/>
+            </td>
+            <td class="t">常用词条</td>
+            <td>
+                <input name="" class="mini-textarea" style="width:80%;height:60px;"/>
             </td>
         </tr>
         <tr>
-            <td colspan="4">
-                <div style="text-align: right">
-                <input type="submit" value="提交">
-                </div>
+            <td colspan="4" class="t">
+                <a class="mini-button" img="../../scripts/miniui/res/images/cancel.png">拒绝</a>
+                <a class="mini-button" img="../../scripts/miniui/res/images/accept.png">同意</a>
             </td>
         </tr>
     </table>
@@ -204,5 +205,6 @@
         //form.setIsValid(false);
     }
 </script>
+
 </body>
 </html>

@@ -99,8 +99,8 @@
 
     mini.parse();
 
-    var grid = mini.get("datagrid1");
-    grid.load();
+//    var grid = mini.get("datagrid1");
+//    grid.load();
 
     //添加
     function add() {

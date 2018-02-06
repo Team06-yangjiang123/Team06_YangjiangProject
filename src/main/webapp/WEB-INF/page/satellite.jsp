@@ -88,84 +88,84 @@
 
     mini.parse();
 
-    var grid = mini.get("datagrid1");
-    grid.load();
+//    var grid = mini.get("datagrid1");
+//    grid.load();
 
-    //添加
-    function add() {
-
-        mini.open({
-            targetWindow: window,
-
-            url: bootPATH + "../demo/CommonLibs/EmployeeWindow.html",
-            title: "新增员工", width: 600, height: 400,
-            onload: function () {
-                var iframe = this.getIFrameEl();
-                var data = {action: "new"};
-                iframe.contentWindow.SetData(data);
-            },
-            ondestroy: function (action) {
-
-                grid.reload();
-            }
-        });
-    }
-
-    function remove() {
-
-        var rows = grid.getSelecteds();
-        if (rows.length > 0) {
-            if (confirm("确定删除选中记录？")) {
-                var ids = [];
-                for (var i = 0, l = rows.length; i < l; i++) {
-                    var r = rows[i];
-                    ids.push(r.id);
-                }
-                var id = ids.join(',');
-                grid.loading("操作中，请稍后......");
-                $.ajax({
-                    url: "../data/AjaxService.aspx?method=RemoveEmployees&id=" + id,
-                    success: function (text) {
-                        grid.reload();
-                    },
-                    error: function () {
-                    }
-                });
-            }
-        } else {
-            alert("请选中一条记录");
-        }
-    }
-
-    //获取管理人列表
-    function onButtonEdit(e) {
-        var buttonEdit = e.sender;
-
-        var win = new UserSelectWindow();
-        win.set({
-            url: "",
-            title: "用户选择",
-            width: 600,
-            height: 350
-        });
-
-        win.show();
-        win.search();
-
-        //初始化数据
-        win.setData(null, function (action) {
-            if (action == "ok") {
-                //获取数据
-                var row = win.getData();
-                if (row) {
-                    buttonEdit.setValue(row.id);
-                    buttonEdit.setText(row.name);
-
-                    alert("选中记录: " + row.name);
-                }
-            }
-        });
-    }
+//    //添加
+//    function add() {
+//
+//        mini.open({
+//            targetWindow: window,
+//
+//            url: bootPATH + "../demo/CommonLibs/EmployeeWindow.html",
+//            title: "新增员工", width: 600, height: 400,
+//            onload: function () {
+//                var iframe = this.getIFrameEl();
+//                var data = {action: "new"};
+//                iframe.contentWindow.SetData(data);
+//            },
+//            ondestroy: function (action) {
+//
+//                grid.reload();
+//            }
+//        });
+//    }
+//
+//    function remove() {
+//
+//        var rows = grid.getSelecteds();
+//        if (rows.length > 0) {
+//            if (confirm("确定删除选中记录？")) {
+//                var ids = [];
+//                for (var i = 0, l = rows.length; i < l; i++) {
+//                    var r = rows[i];
+//                    ids.push(r.id);
+//                }
+//                var id = ids.join(',');
+//                grid.loading("操作中，请稍后......");
+//                $.ajax({
+//                    url: "../data/AjaxService.aspx?method=RemoveEmployees&id=" + id,
+//                    success: function (text) {
+//                        grid.reload();
+//                    },
+//                    error: function () {
+//                    }
+//                });
+//            }
+//        } else {
+//            alert("请选中一条记录");
+//        }
+//    }
+//
+//    //获取管理人列表
+//    function onButtonEdit(e) {
+//        var buttonEdit = e.sender;
+//
+//        var win = new UserSelectWindow();
+//        win.set({
+//            url: "",
+//            title: "用户选择",
+//            width: 600,
+//            height: 350
+//        });
+//
+//        win.show();
+//        win.search();
+//
+//        //初始化数据
+//        win.setData(null, function (action) {
+//            if (action == "ok") {
+//                //获取数据
+//                var row = win.getData();
+//                if (row) {
+//                    buttonEdit.setValue(row.id);
+//                    buttonEdit.setText(row.name);
+//
+//                    alert("选中记录: " + row.name);
+//                }
+//            }
+//        });
+//    }
 </script>
 </body>
 </html>

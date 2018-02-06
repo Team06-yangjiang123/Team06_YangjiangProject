@@ -1,14 +1,16 @@
 [
 
    { id: "user", text: "个人中心", iconCls: "icon-add"},
-   	{ id: "addUser", pid: "user", text: "增加用户", iconCls: "icon-add", url: "../datagrid/celledit.html" },
-   	{ id: "queryRight", pid: "user", text: "个人工作平台",iconCls: "icon-user",url: "/personCenter"},
+   	{ id: "addUser", pid: "user", text: "增加用户", url: "../datagrid/celledit.html" },
+   	{ id: "queryRight", pid: "user", text: "个人工作平台",url: "/personCenter"},
 
-       { id: "clazz", text: "科研项目管理"},
+       { id: "clazz", text: "科研项目管理",iconCls: "icon-add"},
        { id: "queryRight", pid: "clazz", text: "科研项目合同推荐申报",url: "/contractFlowReport"},
        { id: "applyTable", pid: "clazz", text: "承接外部科技项目申报",url: "/applyTable"},
 
-       { id: "right", text: "综合管理"},
-       	{ id: "addRight", pid: "right", text: "查询权限", iconCls: "Note", url: "../tree/detailgrid.html"},
-       	{ id: "editRight", pid: "right", text: "操作权限", iconCls: "Reports", url: "../buttonedit/selectGrid.html"}
+       { id: "right", text: "综合管理",iconCls: "icon-add"},
+       	{ id: "addRight", pid: "right", text: "查询权限", url: "/integratedQuery"},
+       	{ id: "editRight", pid: "right", text: "操作权限", url: "/satellite"},
+       	{ id: "crewManage", pid: "right", text: "厂房管理", url: "/crew"},
+       	{ id: "plantManage", pid: "right", text: "机组管理", url: "/plant"}
 ]
