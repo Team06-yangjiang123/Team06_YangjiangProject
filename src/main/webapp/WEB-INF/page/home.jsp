@@ -57,7 +57,7 @@
 
     </div>
     <div title="center" region="center" bodyStyle="overflow:hidden;">
-        <iframe id="mainframe" frameborder="0" name="main" style="width:100%;height:100%;" border="0"></iframe>
+        <iframe id="mainframe" frameborder="0" name="main" style="width:100%;height:110%;" border="0"></iframe>
     </div>
 </div>
 

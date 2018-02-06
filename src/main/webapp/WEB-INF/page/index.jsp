@@ -64,7 +64,7 @@
 <div id="loginForm" style="border-radius: 30px">
 
     <%--修改提交地址--%>
-    <form id="form1" action="#" method="post">
+    <form id="form1" action="/home" method="get">
 
         <table id="loginTable" style="border-radius: 20px">
             <tr id="top">
@@ -86,7 +86,7 @@
                     <label for="loginTable">密码：</label>
                 </td>
                 <td>
-                    <input name="pwd" errorMode="none" onvalidation="onPwdValidation" class="mini-password" required="true" vtype="minLength:5" minLengthErrorText="密码不能少于5个字符"/>
+                    <input name="password" errorMode="none" onvalidation="onPwdValidation" class="mini-password" required="true" vtype="minLength:5" minLengthErrorText="密码不能少于5个字符"/>
                 </td>
                 <td id="pwd_error" class="errorText" style="font-size: 2px"></td>
             </tr>
@@ -96,45 +96,45 @@
             <tr>
 
                 <td colspan="3" style="text-align: center">
-                    <input value="登录" type="button" onclick="submitForm()" style="width: 100px;background: linear-gradient(#f3ffbe,#fff291,#ffea7e,#fff6c0)"/>
+                    <input value="登录" type="submit"  style="width: 100px;background: linear-gradient(#f3ffbe,#fff291,#ffea7e,#fff6c0)"/>
                 </td>
 
             </tr>
 
         </table>
-        <a href="/home">点击跳转</a>
+
     </form>
 </div>
 
-<script type="text/javascript">
-    mini.parse();
+<%--<script type="text/javascript">--%>
+    <%--mini.parse();--%>
 
-    function submitForm() {
-        var form = new mini.Form("#form1");
-        form.validate();
+    <%--function submitForm() {--%>
+        <%--var form = new mini.Form("#form1");--%>
+        <%--form.validate();--%>
 
-        if (form.isValid() == false) return;
+        <%--if (form.isValid() == false) return;--%>
 
-        //提交数据
-        var data = form.getData();
-        var json = mini.encode(data);
-        alert("提交成功");
-    }
+        <%--//提交数据--%>
+        <%--var data = form.getData();--%>
+        <%--var json = mini.encode(data);--%>
+        <%--alert("提交成功");--%>
+    <%--}--%>
 
-    //////////////////////////////////////////
-    function updateError(e) {
-        var id = e.sender.name + "_error";
-        var el = document.getElementById(id);
-        if (el) {
-            el.innerHTML = e.errorText;
-        }
-    }
-    function onUserNameValidation(e) {
-        updateError(e);
-    }
-    function onPwdValidation(e) {
-        updateError(e);
-    }
-</script>
+    <%--//////////////////////////////////////////--%>
+    <%--function updateError(e) {--%>
+        <%--var id = e.sender.name + "_error";--%>
+        <%--var el = document.getElementById(id);--%>
+        <%--if (el) {--%>
+            <%--el.innerHTML = e.errorText;--%>
+        <%--}--%>
+    <%--}--%>
+    <%--function onUserNameValidation(e) {--%>
+        <%--updateError(e);--%>
+    <%--}--%>
+    <%--function onPwdValidation(e) {--%>
+        <%--updateError(e);--%>
+    <%--}--%>
+<%--</script>--%>
 </body>
 </html>

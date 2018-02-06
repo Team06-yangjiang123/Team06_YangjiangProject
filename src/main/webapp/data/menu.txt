@@ -6,6 +6,7 @@
 
        { id: "clazz", text: "科研项目管理"},
        { id: "queryRight", pid: "clazz", text: "科研项目合同推荐申报",url: "/contractFlowReport"},
+       { id: "applyTable", pid: "clazz", text: "承接外部科技项目申报",url: "/applyTable"},
 
        { id: "right", text: "综合管理"},
        	{ id: "addRight", pid: "right", text: "查询权限", iconCls: "Note", url: "../tree/detailgrid.html"},

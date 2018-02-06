@@ -1,5 +1,6 @@
 package com.team06.controller;
 
+import com.team06.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,9 +16,13 @@ public class MainController {
     }
 
     @RequestMapping(value = "/home")
-    public String home(){
-        return "home";
+    public String home(User user){
+        if (user.getUsername().equals("123456") && user.getPassword().equals("654321")){
+            return "home";
+        }
+        return "index";
     }
+
 
     @RequestMapping(value = "/welcome")
     public String welcome(){
@@ -57,6 +62,11 @@ public class MainController {
     @RequestMapping(value = "/technicalManager")
     public String technicalManager(){
         return "technical_manager";
+    }
+
+    @RequestMapping(value = "/applyTable")
+    public String applyTable(){
+        return "applyTable";
     }
 
 
