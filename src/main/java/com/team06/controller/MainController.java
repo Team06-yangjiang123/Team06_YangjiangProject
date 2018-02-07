@@ -91,5 +91,11 @@ public class MainController {
         return "plant";
     }
 
+    @RequestMapping(value = "/personWorkStation")
+    public String personWorkStation(){
+        return "personWorkStation";
+    }
+
+
 
 }

@@ -34,7 +34,7 @@
 
         .t {
             text-align: right;
-            width: 100px;
+            width: 90px;
         }
 
         span {
@@ -58,7 +58,7 @@
         </tr>
         <tr>
             <td class="t">合同名称<span>*</span></td>
-            <td>
+            <td style="width: 40%">
                 <input type="text" name="pName" class="mini-textbox" style="width: 90%">
             </td>
             <td class="t">合同编号<span>*</span></td>
@@ -106,19 +106,15 @@
         </tr>
         <tr>
             <td class="t">产品形式</td>
-            <td colspan="3">
-                <div id="cbl1" class="mini-checkboxlist"
-                     textField="text" valueField="id"
-                     onclick="checkedInp"style="width: 100%"
-                     data="[{'id':'1001','text':'专题报告'},
-                 {'id':'1002','text':'技术方案'},
-                 {'id':'1003','text':'技术标准'},
-                 {'id':'1004','text':'硬件产品'},
-                 {'id':'1005','text':'生产性文件'},
-                 {'id':'1006','text':'设计文件'},
-                 {'id':'1007','text':'计算机软件'},
-                 {'id':'1008','text':'其他'},]">
-                </div>
+            <td colspan="3"  style="background-color: white;">
+            <input type="checkbox">专题报告
+            <input type="checkbox">技术方案
+            <input type="checkbox">技术标准
+            <input type="checkbox">硬件产品
+            <input type="checkbox">生产性文件
+            <input type="checkbox">设计文件
+            <input type="checkbox">软件产品
+            <input type="checkbox" id="other" traget="other1">其他<input id="other1" type="text" style="border: 0px;border-bottom: 1px solid black;width: 50px">
             </td>
         </tr>
         <tr>
@@ -173,6 +169,24 @@
     </table>
 </div>
 <script>
+
+    $(document).ready(function () {
+
+
+        $(function(){
+            $("#other").bind("click",function(){
+                if(this.checked == false){
+                    $("#"+$(this).attr("traget")).hide();
+                }else{
+                    $("#"+$(this).attr("traget")).show();
+                }
+
+            })
+        });
+
+
+    });
+
 
     function onButtonEdit(e) {
         var btnEdit = this;
