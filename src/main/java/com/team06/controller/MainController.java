@@ -92,4 +92,9 @@ public class MainController {
     }
 
 
+    @RequestMapping(value = "/contractApproval")
+    public String contractApproval(){
+        return "contract_approval";
+    }
+
 }

@@ -99,66 +99,61 @@
                     <div field="tache" width="100" headerAlign="center" allowSort="true">当前环节</div>
                     <div field="age" width="100" headerAlign="center" allowSort="true">提报人</div>
                     <div field="judege" width="100" headerAlign="center" allowSort="true">是否可以打印</div>
-                    <div field="judege" width="100" headerAlign="center" allowSort="true">操作</div>
-
-                    <%--<a class="mini-button" img="../../search.gif">查询</a>--%>
+                    <div field="action" width="100" align="center"  headerAlign="center">操作</div>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
-<a class="mini-button" iconCls="icon-print">打印</a>
-
 
 <script type="text/javascript">
     mini.parse();
 
-//    //查询
-//    var grid = mini.get("datagrid1");
-//
-//    grid.load();
-//
-//
-//    function search() {
-//        var key = document.getElementById("key").value;
-//        grid.load({key: key});
-//    }
-//    $("#key").bind("keydown", function (e) {
-//        if (e.keyCode == 13) {
-//            search();
-//        }
-//    });
-//
-//    //申请人
-//    function onButtonEdit(e) {
-//        var buttonEdit = e.sender;
-//
-//        var win = new UserSelectWindow();
-//        win.set({
-//            url:"",
-//            title: "用户选择",
-//            width: 600,
-//            height: 350
-//        });
-//
-//        win.show();
-//        win.search();
-//
-//        //初始化数据
-//        win.setData(null, function (action) {
-//            if (action == "ok") {
-//                //获取数据
-//                var row = win.getData();
-//                if (row) {
-//                    buttonEdit.setValue(row.id);
-//                    buttonEdit.setText(row.name);
-//
-//                    alert("选中记录: " + row.name);
-//                }
-//            }
-//        });
-//    }
+    var grid = mini.get("datagrid1");
+
+    grid.load();
+
+
+    function search() {
+        var key = document.getElementById("key").value;
+        grid.load({key: key});
+    }
+    $("#key").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            search();
+        }
+    });
+
+    //申请人
+    function onButtonEdit(e) {
+        var buttonEdit = e.sender;
+
+        var win = new UserSelectWindow();
+        win.set({
+            url:"",
+            title: "用户选择",
+            width: 600,
+            height: 350
+        });
+
+        win.show();
+        win.search();
+
+        //初始化数据
+        win.setData(null, function (action) {
+            if (action == "ok") {
+                //获取数据
+                var row = win.getData();
+                if (row) {
+                    buttonEdit.setValue(row.id);
+                    buttonEdit.setText(row.name);
+
+                    alert("选中记录: " + row.name);
+                }
+            }
+        });
+    }
 
 
 </script>

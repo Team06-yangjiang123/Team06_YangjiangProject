@@ -27,11 +27,6 @@
             padding: 5px;
         }
 
-        /*input {*/
-            /*width: 100%;*/
-            /*height: 100%;*/
-        /*}*/
-
         .t {
             text-align: right;
             width: 100px;
@@ -59,27 +54,27 @@
         <tr>
             <td class="t">合同名称<span>*</span></td>
             <td>
-                <input type="text" name="pName" class="mini-textbox" style="width: 90%">
+                <input name="pName" class="mini-textbox" required="required" style="width: 90%">
             </td>
             <td class="t">合同编号<span>*</span></td>
             <td>
-                <input type="text" name="pName" class="mini-textbox" style="width: 90%">
+                <input name="pName" class="mini-textbox" required="required" style="width: 90%">
             </td>
         </tr>
         <tr>
             <td class="t">合同对方信息<span>*</span></td>
             <td>
-                <input type="text" name="pName" class="mini-textbox" style="width: 90%">
+                <input name="pName" class="mini-textbox" required="required" style="width: 90%">
             </td>
         </tr>
         <tr>
             <td class="t">合同起日期<span>*</span></td>
             <td>
-                <input id="date1" class="mini-datepicker" value="2018-01-01"/>
+                <input id="date1" format="yyyy-MM-dd" class="mini-datepicker" required="required" value="2018-01-01"/>
             </td>
             <td class="t">合同止日期<span>*</span></td>
             <td>
-                <input id="date2" class="mini-datepicker" value="2018-01-01"/>
+                <input id="date2" format="yyyy-MM-dd" class="mini-datepicker" required="required" value="2018-01-01"/>
             </td>
         </tr>
         <tr>
@@ -88,17 +83,17 @@
         <tr>
             <td class="t">总费用</td>
             <td>
-                <input type="text" name="pName" class="mini-textbox" style="width: 90%">
+                <input name="pName" onvalidation="onValidation" vtype="float" required="required" class="mini-textbox" style="width: 90%">
             </td>
             <td class="t">对方拨付</td>
             <td>
-                <input type="text" name="pName" class="mini-textbox" style="width: 90%">
+                <input name="pName" vtype="float"  required="required" class="mini-textbox" style="width: 90%">
             </td>
         </tr>
         <tr>
             <td class="t">公司自筹</td>
             <td>
-                <input type="text" name="pName" class="mini-textbox" style="width: 90%">
+                <input name="pName" vtype="float" required="required" class="mini-textbox" style="width: 90%">
             </td>
         </tr>
         <tr>
@@ -107,7 +102,7 @@
         <tr>
             <td class="t">产品形式</td>
             <td colspan="3">
-                <div id="cbl1" class="mini-checkboxlist"
+                <div id="cbl1" class="mini-checkboxlist" onvalidation="isselect"
                      textField="text" valueField="id"
                      onclick="checkedInp"style="width: 100%"
                      data="[{'id':'1001','text':'专题报告'},
@@ -117,7 +112,7 @@
                  {'id':'1005','text':'生产性文件'},
                  {'id':'1006','text':'设计文件'},
                  {'id':'1007','text':'计算机软件'},
-                 {'id':'1008','text':'其他'},]">
+                 {'id':'1008','text':'其他_____'},]">
                 </div>
             </td>
         </tr>
@@ -166,13 +161,53 @@
         <tr>
             <td colspan="4">
                 <div style="text-align: right">
-                <input type="submit" value="提交">
+                <a onclick="" class="mini-button" style="color: black">提交</a>
                 </div>
             </td>
         </tr>
     </table>
 </div>
 <script>
+
+    mini.parse();
+
+    // 验证保留两位小数
+    function regTest(v){
+        var reg=new RegExp("^[0-9]+(.[0-9]{2})$")
+        if(reg.test(v)) return true
+        return false
+    }
+    function onValidation(e){
+        if(e.isValid){
+            if(regTest(e.value)==false){
+                alert("必须两位小数");
+                e.isValid=false;
+            }
+
+        }
+    }
+
+    // 复选框至少选择一项
+    function isselect(e)
+    {
+        var dutyflag=0;
+        var checkobj = document.getElementById("cbl1");
+        var checks = checkobj.getElementsByTagName("input");
+        for(var n=0;n <checks.length;n++)
+        {
+            if(checks[n].checked==true)
+            {
+                dutyflag=1;
+            }
+        }
+        if(dutyflag==0)
+        {
+            alert( "至少要选择1个产品形式 ");
+            return false;
+        }
+        return true;
+    }
+
 
     function onButtonEdit(e) {
         var btnEdit = this;
