@@ -36,7 +36,7 @@
         <span style="position: absolute;z-index: 2;font-size: 10px;left: 56.5%;top: 7%;">当前用户：${"#"}</span>
 
         <img src="../../img/off.png" style="width: 16px;height: 16px;position: absolute;z-index: 2; left: 84%;top: 7%">
-        <span style="position: absolute;left: 85.7%;top: 7%;z-index: 2"><a href="#" style="font-size: 10px;text-decoration: none;color: #0b93d9">退出登录</a></span>
+        <span style="position: absolute;left: 85.7%;top: 7%;z-index: 2"><a href="/" style="font-size: 10px;text-decoration: none;color: #0b93d9">退出登录</a></span>
 
         <img src="../../img/service.png" style="width: 20px;height: 20px;position: absolute;z-index: 2; left: 90%;top: 7%">
         <span style="position: absolute;left: 91.5%;top: 7%;z-index: 2"><a href="#" style="font-size: 10px;text-decoration: none;color: #529bff">联系客服妹妹</a></span>
@@ -52,7 +52,7 @@
              idField="id" parentField="pid"
              textField="text"
              borderStyle="border:0"
-             style="background: linear-gradient(#a4c9ff,#77c2ff,#78beff,#c7e1ff)">
+             style="background: linear-gradient(#a4c9ff,#c6eaff,#e2ebff,#c7e1ff)">
         </div>
 
     </div>

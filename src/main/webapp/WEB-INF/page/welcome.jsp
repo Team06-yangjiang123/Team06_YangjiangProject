@@ -11,7 +11,7 @@
     <title>欢迎页</title>
 </head>
 <body>
-    <div style="text-align: center; width: 100%;height: 100%;background: linear-gradient(#2fa3ff,#bedeff,#4798ff)">
+    <div style="text-align: center; width: 100%;height: 100%;background: linear-gradient(#9fd9ff,#c1c2ff,#ddceff)">
         <div style="width: 10px;height: 30%"></div>
         <img src="../../img/welcome.png">
         <h1>欢迎登录本系统</h1>

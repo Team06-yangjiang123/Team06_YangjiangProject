@@ -18,11 +18,15 @@ public class MainController {
     @RequestMapping(value = "/home")
     public String home(User user){
         if (user.getUsername().equals("123456") && user.getPassword().equals("654321")){
-            return "home";
+            return "lodding";
         }
         return "index";
     }
 
+    @RequestMapping(value = "/main")
+    public String main(){
+        return "home";
+    }
 
     @RequestMapping(value = "/welcome")
     public String welcome(){
@@ -96,5 +100,10 @@ public class MainController {
         return "examine";
     }
 
+
+    @RequestMapping(value = "/lodding")
+    public String lodding(){
+        return "lodding";
+    }
 
 }
