@@ -11,7 +11,6 @@
        { id: "right", text: "综合管理",iconCls: "icon-add"},
        	{ id: "addRight", pid: "right", text: "查询权限", url: "/integratedQuery"},
        	{ id: "editRight", pid: "right", text: "操作权限", url: "/satellite"},
-       	{ id: "crewManage", pid: "right", text: "机组管理", url: "/crew"},
-       	{ id: "plantManage", pid: "right", text: "厂房管理", url: "/plant"},
-       	{ id: "plantManage", pid: "right", text: "射线探伤人员管理", url: "/radiography"},
+       	{ id: "crewManage", pid: "right", text: "厂房管理", url: "/crew"},
+       	{ id: "plantManage", pid: "right", text: "机组管理", url: "/plant"}
 ]

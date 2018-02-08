@@ -62,7 +62,7 @@
     <table width="100%" style="border: 1px solid #c4e5ff">
         <tr class="header">
             <td colspan="4" id="td1" style="background: linear-gradient(#ddf3ff, #dbedff, #c9eaff, #cfe4ff);">
-                <img src="../../img/position.png" style="width: 13px;height: 13px">&nbsp;当前位置：个人工作台 >> 代办任务
+                <img src="../../img/position.png" style="width: 13px;height: 13px">&nbsp;当前位置：个人工作台 >> 已办任务
             </td>
         </tr>
         <tr>
@@ -121,31 +121,15 @@
     <div id="datagrid1" class="mini-datagrid" style="width:100%;height:71%;" idField="id" pageSize="10" multiSelect="true">
         <div property="columns">
             <div type="checkcolumn"></div>
-            <div field="num" width="120" headerAlign="center" vtype="required;email" autoEscape="true" allowSort="true">流程编号</div>
-            <div field="name" width="100" allowSort="true" >流程名称</div>
-            <div field="dept" width="100" allowSort="true" >申请部门</div>
-            <div field="link" width="100" allowSort="true" >当前环节</div>
-            <div field="person" width="100" allowSort="true" >提报人</div>
+            <div field="num" width="120" align="center" headerAlign="center" vtype="required;email" autoEscape="true" allowSort="true">流程编号</div>
+            <div field="name" width="100" align="center" allowSort="true" >流程名称</div>
+            <div field="dept" width="100" align="center" allowSort="true" >申请部门</div>
+            <div field="link" width="100" align="center" allowSort="true" >当前环节</div>
+            <div field="person" width="100" align="center" allowSort="true" >提报人</div>
             <div field="time" width="100" allowSort="true"  align="center" headerAlign="center">提报时间</div>
-            <div field="operation" width="100" headerAlign="center" >操作</div>
+            <div name="action" width="100" align="center"  headerAlign="center" renderer="onActionRenderer">操作</div>
         </div>
     </div>
-
-    <%--<div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;" idField="id" pageSize="10" multiSelect="true">--%>
-    <%--<div property="columns">--%>
-
-    <%--<div type="checkcolumn"></div>--%>
-    <%--<div field="num" width="120" headerAlign="center" align="center" vtype="required;email" autoEscape="true" allowSort="true">流程编号</div>--%>
-    <%--<div field="name" width="100" allowSort="true" headerAlign="center" align="center">流程名称</div>--%>
-    <%--<div field="dept" width="100" allowSort="true"  align="center" headerAlign="center">申请部门</div>--%>
-    <%--<div field="link" width="100" headerAlign="center" align="center" >当前环节</div>--%>
-    <%--<div field="person" width="100" headerAlign="center" align="center" >提报人</div>--%>
-    <%--<div field="time" width="100" headerAlign="center" align="center" >提报时间</div>--%>
-    <%--<div field="operation" width="100" headerAlign="center" align="center" >操作</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
-
 
 
 </div>
@@ -153,6 +137,17 @@
     mini.parse();
 
     var grid = mini.get("datagrid1");
+    // 加入表格中的按钮
+    function onActionRenderer(e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+
+        var s = '<a class="mini-button"  style="width: 40px" href="/contractApproval">' +
+            '<img src="../../scripts/miniui/themes/icons/folder-open.gif">查看</a>';
+        return s;
+    }
 
     // 分页填充细节处理
     function fillData(pageIndex, pageSize, dataResult, grid) {

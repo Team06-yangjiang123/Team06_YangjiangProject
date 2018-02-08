@@ -175,6 +175,8 @@
 </div>
 <script>
 
+    $("#cbl1").append("<input type='text' value='其他' style='border-top: none;" +
+        "border-left: none;border-right: none;border-bottom: 1px solid darkgray'>");
     function onButtonEdit(e) {
         var btnEdit = this;
         mini.open({
