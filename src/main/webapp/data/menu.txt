@@ -1,7 +1,6 @@
 [
 
    { id: "user", text: "个人中心", iconCls: "icon-add"},
-   	{ id: "addUser", pid: "user", text: "增加用户", url: "../datagrid/celledit.html" },
    	{ id: "queryRight", pid: "user", text: "个人工作平台",url: "/personCenter"},
 
        { id: "clazz", text: "科研项目管理",iconCls: "icon-add"},
@@ -9,9 +8,9 @@
        { id: "applyTable", pid: "clazz", text: "承接外部科技项目申报",url: "/applyTable"},
 
        { id: "right", text: "综合管理",iconCls: "icon-add"},
-       	{ id: "addRight", pid: "right", text: "查询权限", url: "/integratedQuery"},
-       	{ id: "editRight", pid: "right", text: "操作权限", url: "/satellite"},
-       	{ id: "crewManage", pid: "right", text: "机组管理", url: "/crew"},
-       	{ id: "plantManage", pid: "right", text: "厂房管理", url: "/plant"},
-       	{ id: "plantManage", pid: "right", text: "射线探伤人员管理", url: "/radiography"},
+       	{ id: "addRight", pid: "right", text: "综合查询", url: "/integratedQuery"},
+       	{ id: "editRight", pid: "right", text: "卫星库管理人管理", url: "/satellite"},
+       	{ id: "crewManage", pid: "right", text: "厂房管理", url: "/crew"},
+       	{ id: "plantManage", pid: "right", text: "机组管理", url: "/plant"},
+       	{ id: "radiography", pid: "right", text: "射线探伤人员管理", url: "/radiography"}
 ]

@@ -91,5 +91,15 @@ public class MainController {
         return "plant";
     }
 
+    @RequestMapping(value = "/contractApproval")
+    public String contractApproval(){
+        return "contract_approval";
+    }
+
+    @RequestMapping(value = "/radiography")
+    public String radiography(){
+        return "radiography";
+    }
+
 
 }

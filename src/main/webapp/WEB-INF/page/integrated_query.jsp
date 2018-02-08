@@ -105,13 +105,13 @@
     <div property="columns">
         <%--<div type="indexcolumn"></div>--%>
         <div type="checkcolumn"></div>
-        <div field="loginname" width="120" headerAlign="center" allowSort="true">流程编号</div>
-        <div field="name" width="120" headerAlign="center" allowSort="true">流程名称</div>
-        <div field="dept" width="120" headerAlign="center" allowSort="true">所属部门</div>
-        <div field="tache" width="100" headerAlign="center" allowSort="true">当前环节</div>
-        <div field="person" width="100" headerAlign="center" allowSort="true">提报人</div>
-        <div field="judege" width="100" headerAlign="center" allowSort="true">是否可以打印</div>
-        <div field="operation" width="100" headerAlign="center" allowSort="true">操作</div>
+        <div field="loginname" width="120" headerAlign="center" allowSort="true" align="center">流程编号</div>
+        <div field="name" width="120" headerAlign="center" allowSort="true" align="center">流程名称</div>
+        <div field="dept" width="120" headerAlign="center" allowSort="true" align="center">所属部门</div>
+        <div field="tache" width="100" headerAlign="center" allowSort="true" align="center">当前环节</div>
+        <div field="person" width="100" headerAlign="center" allowSort="true" align="center">提报人</div>
+        <div field="judege" width="100" headerAlign="center" allowSort="true" align="center">是否可以打印</div>
+        <div name="action" width="100" align="center" headerAlign="center" allowSort="true">操作</div>
 
         <%--<a class="mini-button" img="../../search.gif">查询</a>--%>
 
@@ -126,6 +126,22 @@
     mini.parse();
 
     var grid = mini.get("datagrid1");
+
+
+
+    grid.on("drawcell", function (e) {
+        var record = e.record,
+            column = e.column,
+            field = e.field,
+            value = e.value;
+
+        //设置行样式
+        if (column.name=="action") {
+            e.cellHtml = '<a class="mini-button"  style="width: 40px" href="/contractApproval">' +
+            '<img src="../../scripts/miniui/themes/icons/edit.gif">流程</a>'
+        }
+
+    });
 
     // 分页填充细节处理
     function fillData(pageIndex, pageSize, dataResult, grid) {
