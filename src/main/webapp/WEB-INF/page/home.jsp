@@ -29,8 +29,8 @@
 </head>
 <body style="background-color: #0b549a">
 
-<div id="layout1" class="mini-layout" style="width:100%;height:100%;">
-    <div class="header" region="north" height="55%" showSplit="false" showHeader="false">
+<div id="layout1" class="mini-layout" style="width:100%;height:100%;"  borderStyle="border:solid 1px #aaa;">
+    <div title="north" region="north" height="80" showSplitIcon="false" showHeader="false" showSplit="false">
         <img src=../../img/pagerHeard.png style="position: absolute;width: 100%;height: 100%">
         <img src="../../img/user.png" style="width: 20px;height: 20px;position: absolute;z-index: 2; left: 55%;top: 7%">
         <span style="position: absolute;z-index: 2;font-size: 10px;left: 56.5%;top: 7%;">当前用户：${"#"}</span>
@@ -44,7 +44,7 @@
     <div title="south" region="south" showSplit="false" showHeader="false" height="30">
         <div style="line-height:28px;text-align:center;cursor:default">Copyright © 蓝鸥科技有限公司版权所有</div>
     </div>
-    <div showHeader="false" region="west" width="180" maxWidth="250" minWidth="100">
+    <div title="west" showProxyText="false" region="west" width="200" expanded="true" showSplitIcon="false">
         <!--OutlookMenu-->
         <div id="leftTree" class="mini-outlookmenu"
              url="../../data/menu.txt"
@@ -56,9 +56,11 @@
         </div>
 
     </div>
-    <div title="center" region="center" bodyStyle="overflow:hidden;">
+
+    <div title="center" region="center" style="background-color: white;mso-cellspacing: 0" >
         <iframe id="mainframe" frameborder="0" name="main" style="width:100%;height:110%;" border="0"></iframe>
     </div>
+
 </div>
 
 
@@ -74,6 +76,5 @@
         iframe.src = item.url;
     }
 </script>
-
 </body>
 </html>

@@ -101,5 +101,10 @@ public class MainController {
         return "radiography";
     }
 
+    @RequestMapping(value = "/examine")
+    public String examine(){
+        return "examine";
+    }
+
 
 }
