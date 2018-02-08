@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: zmc
-  Date: 18/2/6
-  Time: 上午8:25
+  Date: 18/2/7
+  Time: 上午10:57
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>卫星库管理</title>
+    <title>射线探伤</title>
     <link href="../../css/demo.css" rel="stylesheet" type="text/css">
     <script src="../../scripts/boot.js" type="text/javascript"></script>
     <script src="../../js/ajaxfileupload.js" type="text/javascript"></script>
@@ -21,7 +21,6 @@
             border-collapse: collapse;
             width: 100%;
             text-align: center;
-
         }
 
         .colo {
@@ -32,10 +31,9 @@
             text-align: right;
         }
 
-        #w1, #w2 {
+        #w1, #w2, #w3, #w4, #w5 {
             background-color: aliceblue;
         }
-
 
         .user_add .mini-buttonedit-icon {
             background: url(/scripts/miniui/res/images/user_add.png) no-repeat 50% 50%;
@@ -48,7 +46,7 @@
 <table>
     <tr class="colo" style="height: 25px;text-align: left">
         <td colspan="6">
-            <img src="../../img/position.png" style="width: 13px;height: 13px">&nbsp;当前位置：综合管理 >> 卫星库管理人管理
+            <img src="../../img/position.png" style="width: 13px;height: 13px">&nbsp;当前位置：综合管理 >> 射线探伤人员管理
         </td>
     </tr>
 </table>
@@ -57,16 +55,23 @@
      style="width:100%"
      showToolbar="false" showCollapseButton="false" showFooter="false" allowResize="false"
      collapseOnTitleClick="true">
-    <table style="width:100%;" border="1" cellpadding="1" cellspacing="2">
+    <table border="1" cellpadding="1" cellspacing="2">
         <tr class="colo">
-            <td>卫星库名称</td>
+            <td>姓名</td>
             <td id="w1"><input type="text" name="plantname" style="height: 25px; width: 260px"></td>
-            <td>管理人员</td>
-            <td id="w2"><input id="btnEdit1"
-                               class="mini-buttonedit user_add"
-                               onbuttonclick="onButtonEdit"
-                               style="height: 25px; width: 260px"/></td>
+            <td>通行卡号</td>
+            <td id="w2"><input type="text" name="cardnumber" style="height: 25px; width: 260px"></td>
         </tr>
+        <tr class="colo">
+            <td>单位</td>
+            <td id="w3"><input type="text" name="company" style="height: 25px; width: 260px"></td>
+            <td>员工号</td>
+            <td id="w4"><input type="text" name="number" style="height: 25px; width: 260px"></td>
+        </tr>
+        <tr class="colo">
+            <td>关键字</td>
+            <td id="w5"><input type="text" name="keyword"
+                                           style="height: 25px; width: 260px"></td>
         </tr>
         <tr id="skill">
             <td id="first" colspan="4" style="background: aliceblue">
@@ -78,21 +83,24 @@
     </table>
 </div>
 
+
 <div id="datagrid1" class="mini-datagrid" style="width:100%;height:25%;"
      idField="id" pageSize="5" multiSelect="true">
-    <div property="columns">
-        <!--<div type="indexcolumn"></div>        -->
+    <div property="columns" id="form1">
         <div type="checkcolumn"></div>
-        <div field="satellite" width="120" headerAlign="center" allowSort="true">卫星库</div>
-        <div field="name" width="120" headerAlign="center" allowSort="true">管理人员</div>
-        <div field="date" width="120" headerAlign="center" allowSort="true">创建日期</div>
-        <div field="judge" width="120" headerAlign="center" allowSort="true">是否有效</div>
+        <div field="name" width="120" headerAlign="center" allowSort="true">姓名</div>
+        <div field="cardnumber" width="120" headerAlign="center" allowSort="true">通行卡号</div>
+        <div field="company" width="120" headerAlign="center" allowSort="true">单位</div>
+        <div field="empno" width="120" headerAlign="center" allowSort="true">员工号</div>
+        <div field="rank" width="120" headerAlign="center" allowSort="true">RT级别</div>
+        <div field="number" width="120" headerAlign="center" allowSort="true">RT编号</div>
+        <div field="begindate" width="120" headerAlign="center" allowSort="true">开始日期</div>
+        <div field="enddate" width="120" headerAlign="center" allowSort="true">结束日期</div>
     </div>
 </div>
 
 
 <script type="text/javascript">
-
     mini.parse();
 
     var grid = mini.get("datagrid1");
@@ -131,7 +139,7 @@
     // 获取所有数据和总记录数 { total: 100, data: [...] }
     var dataResult = null;
     $.ajax({
-        url: '../../data/satellite.txt',
+        url: '../../data/radiography.txt',
         dataType: 'text',
         async: false,
         success: function (text) {
@@ -178,56 +186,54 @@
         });
 
     }
+//
+//    //添加
+//    function add() {
+//
+//        mini.open({
+//            targetWindow: window,
+//
+//            url: "",
+//            title: "新增员工", width: 600, height: 400,
+//            onload: function () {
+//                var iframe = this.getIFrameEl();
+//                var data = {action: "new"};
+//                iframe.contentWindow.SetData(data);
+//            },
+//            ondestroy: function (action) {
+//
+//                grid.reload();
+//            }
+//        });
+//    }
 
-    //    var grid = mini.get("datagrid1");
-    //    grid.load();
+    function remove() {
 
-    //    //添加
-    //    function add() {
-    //
-    //        mini.open({
-    //            targetWindow: window,
-    //
-    //            url: bootPATH + "../demo/CommonLibs/EmployeeWindow.html",
-    //            title: "新增员工", width: 600, height: 400,
-    //            onload: function () {
-    //                var iframe = this.getIFrameEl();
-    //                var data = {action: "new"};
-    //                iframe.contentWindow.SetData(data);
-    //            },
-    //            ondestroy: function (action) {
-    //
-    //                grid.reload();
-    //            }
-    //        });
-    //    }
-    //
-        function remove() {
-
-            var rows = grid.getSelecteds();
-            if (rows.length > 0) {
-                if (confirm("确定删除选中记录？")) {
-                    var ids = [];
-                    for (var i = 0, l = rows.length; i < l; i++) {
-                        var r = rows[i];
-                        ids.push(r.id);
-                    }
-                    var id = ids.join(',');
-                    grid.loading("操作中，请稍后......");
-                    $.ajax({
-                        url: "../data/AjaxService.aspx?method=RemoveEmployees&id=" + id,
-                        success: function (text) {
-                            grid.reload();
-                        },
-                        error: function () {
-                        }
-                    });
+        var rows = grid.getSelecteds();
+        if (rows.length > 0) {
+            if (confirm("确定删除选中记录？")) {
+                var ids = [];
+                for (var i = 0, l = rows.length; i < l; i++) {
+                    var r = rows[i];
+                    ids.push(r.id);
                 }
-            } else {
-                alert("请选中一条记录");
+                var id = ids.join(',');
+                grid.loading("操作中，请稍后......");
+                $.ajax({
+                    url: "" + id,
+                    success: function (text) {
+                        grid.reload();
+                    },
+                    error: function () {
+                    }
+                });
             }
+        } else {
+            alert("请选中一条记录");
         }
-//    ../data/AjaxService.aspx?method=RemoveEmployees&id="
+    }
+
+
 </script>
 </body>
 </html>

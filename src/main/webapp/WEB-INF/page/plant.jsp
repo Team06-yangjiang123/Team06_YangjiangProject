@@ -12,115 +12,200 @@
     <link href="../../css/demo.css" rel="stylesheet" type="text/css">
     <script src="../../scripts/boot.js" type="text/javascript"></script>
     <script src="../../js/ajaxfileupload.js" type="text/javascript"></script>
-    <script src="../../CommonLibs/UserSelectWindow.js" type="text/javascript"></script>
 
-    <style>
-        #skill {
-            text-align: right;
-            background-color: #e3edef;
-
-        }
-
+    <style type="text/css">
         table {
-            background-color: #ccebfa;
+            font-size: small;
+            font-family: "Heiti SC";
             border: 1px solid #b2d1f5;
             border-collapse: collapse;
             width: 100%;
+            text-align: center;
+
         }
 
-        #form1 {
-            background-color: #ccebfa;
+        .colo {
+            background: linear-gradient(#e1f5ff, #c9eaff, #cbe1ff);
+        }
+
+        #first {
+            text-align: right;
         }
 
         #w1, #w2, #w3, #w4 {
-            background-color: white;
+            background-color: aliceblue;
         }
+
+        .user_add .mini-buttonedit-icon {
+            background: url(/scripts/miniui/res/images/user_add.png) no-repeat 50% 50%;
+        }
+
     </style>
 </head>
+
 <body>
+<table>
+    <tr class="colo" style="height: 25px;text-align: left">
+        <td colspan="6">
+            <img src="../../img/position.png" style="width: 13px;height: 13px">&nbsp;当前位置：综合管理 >> 厂房管理
+        </td>
+    </tr>
+</table>
 
-<div style="width: 100%">
-    <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
-        <div style="background-color:#ccebfa "><font size="2">当前位置:综合管理>>厂房管理</font></div>
-        <div id="panel1" class="mini-panel" title="查询条件"
-             style="width:100%; background-color: #ccebfa" iconCls="icon-add"
-             showToolbar="false" showCollapseButton="false" showFooter="false" allowResize="false"
-             collapseOnTitleClick="true"
-        >
-
-            <table style="width:100%;" border="1" cellpadding="1" cellspacing="2">
-
-                <tr>
-                    <td><font size="2">厂房名称</font></td>
-                    <td id="w1"><input type="text" name="plantname" style="height: 25px; width: 260px"></td>
-                    <td><font size="2">厂房经理</font></td>
-                    <td id="w2"><input id="btnEdit1" class="mini-buttonedit" onbuttonclick="onButtonEdit"
-                                       style="height: 25px; width: 260px"/>
-                        <img src="../../img/user.png" style="height: 25px; width: 25px"></td>
-                </tr>
-                <tr>
-                    <td><font size="2">厂房地址</font></td>
-                    <td id="w3"><input type="text" name="address" style="height: 25px; width: 260px"></td>
-                    <td><font size="2">机组</font></td>
-                    <td id="w4"><input name="Dept" showNullItem="true"
-                                       class="mini-combobox" url="../../data/dept.txt"
-                                       value="cn" textField="text" valueField="id"
-                                       style="height: 25px; width: 260px"/></td>
-                    </td>
-                </tr>
-                <tr id="skill">
-                    <td style="width:100%;" colspan="4">
-                        <a class="mini-button" img="../../img/search.gif" onclick="search()">查询</a>
-                        <a class="mini-button" iconCls="icon-add" onclick="add()">增加</a>
-                        <a class="mini-button" iconCls="icon-remove" onclick="remove()">删除</a>
-                    </td>
-                </tr>
-            </table>
+<div id="panel1" class="mini-panel" title="查询条件" iconCls="icon-add"
+     style="width:100%"
+     showToolbar="false" showCollapseButton="false" showFooter="false" allowResize="false"
+     collapseOnTitleClick="true">
+    <table style="width:100%;" border="1" cellpadding="1" cellspacing="2">
+        <tr class="colo">
+            <td>厂房名称</td>
+            <td id="w1"><input type="text" name="plantname" style="height: 25px; width: 260px"></td>
+            <td>厂房经理</td>
+            <td id="w2"><input id="btnEdit1"
+                               class="mini-buttonedit user_add"
+                               onbuttonclick="onButtonEdit"
+                               style="height: 25px; width: 260px"/></td>
+        </tr>
+        <tr class="colo">
+            <td>厂房地址</td>
+            <td id="w3"><input type="text" name="address" style="height: 25px; width: 260px"></td>
+            <td>机组</td>
+            <td id="w4"><input name="Dept" showNullItem="true"
+                               class="mini-combobox" url="../../data/crew.txt"
+                               value="a" textField="text" valueField="id"
+                               style="height: 25px; width: 260px"/></td>
+            </td>
+        </tr>
+        <tr id="skill">
+            <td id="first" colspan="4" style="background: aliceblue">
+                <a class="mini-button" img="../../img/search.gif" onclick="search()">查询</a>
+                <a class="mini-button" iconCls="icon-add" onclick="add()">增加</a>
+                <a class="mini-button" iconCls="icon-remove" onclick="remove()">删除</a>
+            </td>
+        </tr>
+    </table>
+</div>
 
 
-            <div id="datagrid1" class="mini-datagrid" style="width:100%;height:280px;" allowResize="true"
-                 url="" idField="id" multiSelect="true">
-
-                <div property="columns" id="form1">
-                    <!--<div type="indexcolumn"></div>        -->
-                    <div type="checkcolumn"></div>
-                    <div field="crew" width="120" headerAlign="center" allowSort="true">机组</div>
-                    <div field="plantname" width="120" headerAlign="center" allowSort="true">厂房名称</div>
-                    <div field="manager" width="120" headerAlign="center" allowSort="true">厂房经理</div>
-                    <div field="address" width="120" headerAlign="center" allowSort="true">厂房地址</div>
-                    <div field="date" width="120" headerAlign="center" allowSort="true">创建日期</div>
-                </div>
-            </div>
-        </div>
+<div id="datagrid1" class="mini-datagrid" style="width:100%;height:25%;"
+     idField="id" pageSize="5" multiSelect="true">
+    <div property="columns" id="form1">
+        <div type="checkcolumn"></div>
+        <div field="crew" width="120" headerAlign="center" allowSort="true">机组</div>
+        <div field="plantname" width="120" headerAlign="center" allowSort="true">厂房名称</div>
+        <div field="manager" width="120" headerAlign="center" allowSort="true">厂房经理</div>
+        <div field="address" width="120" headerAlign="center" allowSort="true">厂房地址</div>
+        <div field="date" width="120" headerAlign="center" allowSort="true">创建日期</div>
     </div>
 </div>
 
-<script type="text/javascript">
 
+<script type="text/javascript">
     mini.parse();
 
-//    var grid = mini.get("datagrid1");
-//    grid.load();
+    var grid = mini.get("datagrid1");
 
-    //添加
-    function add() {
+    // 分页填充细节处理
+    function fillData(pageIndex, pageSize, dataResult, grid) {
 
+        var data = dataResult.data, totalCount = dataResult.total;
+
+        var arr = [];
+        var start = pageIndex * pageSize, end = start + pageSize;
+        for (var i = start, l = end; i < l; i++) {
+            var record = data[i];
+            if (!record) continue;
+            arr.push(record);
+        }
+
+
+        grid.setTotalCount(totalCount);
+        grid.setPageIndex(pageIndex);
+        grid.setPageSize(pageSize);
+
+        grid.setData(arr);
+    }
+
+    // 监听分页前事件，阻止后自行设置当前数据和分页信息
+    grid.on("beforeload", function (e) {
+        e.cancel = true;
+
+        var pageIndex = e.data.pageIndex, pageSize = e.data.pageSize;
+        fillData(pageIndex, pageSize, dataResult, grid);
+    });
+
+    ////////////////////////////////////////////////////////////////////////
+
+    // 获取所有数据和总记录数 { total: 100, data: [...] }
+    var dataResult = null;
+    $.ajax({
+        url: '../../data/plant.txt',
+        dataType: 'text',
+        async: false,
+        success: function (text) {
+            dataResult = mini.decode(text);
+        }
+    });
+
+    // 第一次设置
+    fillData(0, grid.getPageSize(), dataResult, grid);
+
+    /*返回表单数据*/
+    function getForm() {
+        var form = new mini.Form("#form1");
+        var data = form.getData();
+        var s = mini.encode(data);
+        return s;
+    }
+
+    //
+    //    grid.load();
+    //
+
+    function onButtonEdit(e) {
+
+        var btnEdit = this;
         mini.open({
-            targetWindow: window,
-
-            url: bootPATH + "../demo/CommonLibs/EmployeeWindow.html",
-            title: "新增员工", width: 600, height: 400,
-            onload: function () {
-                var iframe = this.getIFrameEl();
-                var data = {action: "new"};
-                iframe.contentWindow.SetData(data);
-            },
+            url: "/selectPerson",
+            title: "选择申请人",
+            width: 550,
+            height: 380,
             ondestroy: function (action) {
+                //if (action == "close") return false;
+                if (action == "ok") {
+                    var iframe = this.getIFrameEl();
+                    var data = iframe.contentWindow.GetData();
+                    data = mini.clone(data);    //必须
+                    if (data) {
+                        btnEdit.setValue(data.id);
+                        btnEdit.setText(data.name);
+                    }
+                }
 
-                grid.reload();
             }
         });
+
     }
+
+    //    //添加
+    //    function add() {
+    //
+    //        mini.open({
+    //            targetWindow: window,
+    //
+    //            url: bootPATH + "../demo/CommonLibs/EmployeeWindow.html",
+    //            title: "新增员工", width: 600, height: 400,
+    //            onload: function () {
+    //                var iframe = this.getIFrameEl();
+    //                var data = {action: "new"};
+    //                iframe.contentWindow.SetData(data);
+    //            },
+    //            ondestroy: function (action) {
+    //
+    //                grid.reload();
+    //            }
+    //        });
+    //    }
 
     function remove() {
 
@@ -148,35 +233,7 @@
         }
     }
 
-    //获取管理人列表
-    function onButtonEdit(e) {
-        var buttonEdit = e.sender;
 
-        var win = new UserSelectWindow();
-        win.set({
-            url: "",
-            title: "用户选择",
-            width: 600,
-            height: 350
-        });
-
-        win.show();
-        win.search();
-
-        //初始化数据
-        win.setData(null, function (action) {
-            if (action == "ok") {
-                //获取数据
-                var row = win.getData();
-                if (row) {
-                    buttonEdit.setValue(row.id);
-                    buttonEdit.setText(row.name);
-
-                    alert("选中记录: " + row.name);
-                }
-            }
-        });
-    }
 </script>
 </body>
 </html>

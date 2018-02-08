@@ -91,5 +91,8 @@ public class MainController {
         return "plant";
     }
 
-
+    @RequestMapping(value = "/radiography")
+    public String radiography(){
+        return "radiography";
+    }
 }
