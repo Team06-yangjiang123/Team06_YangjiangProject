@@ -91,5 +91,10 @@ public class MainController {
         return "plant";
     }
 
+    @RequestMapping(value = "/examine")
+    public String examine(){
+        return "examine";
+    }
+
 
 }

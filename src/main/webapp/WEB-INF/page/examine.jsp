@@ -1,21 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: dllo
-  Date: 2018/2/6
-  Time: 上午11:30
+  Date: 2018/2/8
+  Time: 下午7:09
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>承接外部科技项目申报</title>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link href="../../css/demo.css" rel="stylesheet" type="text/css" />
-
-
+    <title>审批页面</title>
     <script src="../../scripts/boot.js" type="text/javascript"></script>
-
     <style>
         table{
             width: 100%;
@@ -36,17 +30,20 @@
         .fonts{
             font-size: 13px;
         }
+
+        #d .mini-button
+        {
+            margin-right:10px;
+            margin-bottom:10px;
+        }
     </style>
 
 </head>
 <body>
 
 <table  cellspacing="0" cellpadding="0">
-    <tr>
-        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#c0c3ff,#dcedff)">
-           <img src="../../img/position.png" style="width: 15px;height: 15px">&nbsp;<span style="font-size: 10px">当前位置：承接外部科技项目申报</span>
-        </td>
-    </tr>
+
+
     <tr>
         <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#8cb7ff,#dcedff)">
             <span style="font-size: 10px">&nbsp;&nbsp;&nbsp;项目基本信息</span>
@@ -54,7 +51,7 @@
     </tr>
     <tr>
         <td class="tdName" style="height: 5%">项目名称<span style="color: red">※</span></td>
-        <td colspan="3" style="background: white"><input class="mini-textbox" required="true" style="background-color: #f9fffd;width: 40%;height: 100%"></td>
+        <td colspan="3" style="background: white"><input class="mini-textbox" style="background-color: #f9fffd;width: 40%;height: 100%"></td>
     </tr>
     <tr style="height: 5%;">
         <td class="tdName">项目来源<span style="color: red">※</span></td>
@@ -67,23 +64,23 @@
     </tr>
     <tr style="height: 4%">
         <td class="tdName">申报单位<span style="color: red">※</span></td>
-        <td style="width: 40%;background-color: white"><input class="mini-textbox" required="true" style="width: 70%;height: 100%"></td>
+        <td style="width: 40%;background-color: white"><input class="mini-textbox" style="width: 70%;height: 100%"></td>
         <td class="tdName">联合申报单位</td>
-        <td style="background-color: white"><input class="mini-textbox" required="true" style="width: 70%;height: 100%;background-color: white"></td>
+        <td style="background-color: white"><input class="mini-textbox" style="width: 70%;height: 100%;background-color: white"></td>
     </tr>
     <tr style="height: 10%">
         <td class="tdName">应用方向<span style="color: red">※</span></td>
-        <td colspan="3"><textarea class="mini-textarea" required="true" style="width: 100%;height: 100%"></textarea></td>
+        <td colspan="3"><textarea class="mini-textarea" style="width: 100%;height: 100%"></textarea></td>
     </tr>
 
     <tr>
         <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#8cb7ff,#dcedff)">
-             <span style="font-size: 10px">项目成果</span>
+            <span style="font-size: 10px">项目成果</span>
         </td>
     </tr>
     <tr style="height: 5%">
         <td class="tdName">成果应用<span style="color: red">※</span></td>
-        <td colspan="3"><textarea class="mini-textarea" required="true" style="width: 100%;height: 100%"></textarea></td>
+        <td colspan="3"><textarea class="mini-textarea" style="width: 100%;height: 100%"></textarea></td>
     </tr>
     <tr>
         <td class="tdName">产品形式<span style="color: red">※</span></td>
@@ -100,15 +97,15 @@
     </tr>
     <tr style="height: 5%">
         <td class="tdName">预计知识产权<span style="color: red">※</span></td>
-        <td colspan="3"><textarea class="mini-textarea" required="true" style="width: 100%;height: 100%"></textarea></td>
+        <td colspan="3"><textarea class="mini-textarea" style="width: 100%;height: 100%"></textarea></td>
     </tr>
     <tr style="height: 5%">
         <td class="tdName">预计经济效益<span style="color: red">※</span></td>
-        <td colspan="3"><textarea class="mini-textarea" required="true" style="width: 100%;height: 100%"></textarea></td>
+        <td colspan="3"><textarea class="mini-textarea" style="width: 100%;height: 100%"></textarea></td>
     </tr>
     <tr style="height: 5%">
         <td class="tdName">形成固定资产<span style="color: red">※</span></td>
-        <td colspan="3"><textarea class="mini-textarea" required="true" style="width: 100%;height: 100%"></textarea></td>
+        <td colspan="3"><textarea class="mini-textarea" style="width: 100%;height: 100%"></textarea></td>
     </tr>
 
     <tr>
@@ -120,60 +117,47 @@
     </tr>
     <tr>
         <td class="tdName">总预算<span style="color: red">※</span></td>
-        <td style="background-color: white"><input class="mini-textbox" required="true" style="width: 70%;height: 100%"></td>
-        <td class="tdName">外部经费</td>
-        <td style="background-color: white"><input class="mini-textbox" required="true" style="width: 70%;height: 100%"></td>
+        <td style="background-color: white"><input class="mini-textbox" style="width: 70%;height: 100%"></td>
+        <td class="tdName">部门经费</td>
+        <td style="background-color: white"><input class="mini-textbox" style="width: 70%;height: 100%"></td>
     </tr>
     <tr>
-        <td class="tdName">公司经费<span style="color: red">※</span></td>
-        <td colspan="3" style="background-color: white"><input class="mini-textbox" required="true" style="width: 31%;height: 100%"></td>
+        <td class="tdName">公司自筹<span style="color: red">※</span></td>
+        <td colspan="3" style="background-color: white"><input class="mini-textbox" style="width: 31%;height: 100%"></td>
     </tr>
 
     <tr>
         <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#8cb7ff,#dcedff)">
 
-            <span style="font-size: 10px">流程信息</span>
+            <span style="font-size: 10px">审批意见</span>
 
         </td>
     </tr>
     <tr style="height: 4%">
-        <td class="tdName">技术部经理<span style="color: red">※</span></td>
+        <td class="tdName">审批意见</td>
 
-        <td colspan="3" style="background-color: white">
-            <input class="mini-textbox" required="true" style="width: 31%;height: 100%">
+        <td style="background-color: white">
+            <input class="mini-textarea" style="width: 31%;height: 100%">
         </td>
+        <td class="tdName">常用词条</td>
+        <td style="background-color: white">
+            <input class="mini-textarea" style="width: 31%;height: 100%">
+        </td>
+
     </tr>
     <tr>
-        <td colspan="4" style="text-align: right;background: linear-gradient(#cee2ff,#a8cdff,#ced7ff)"><a class="mini-button" href="/examine">提交</a></td>
+        <td colspan="4" style="text-align: right;background: linear-gradient(#cee2ff,#a8cdff,#ced7ff)">
+            <a class="mini-button" img="../../scripts/miniui/res/images/cancel.png">拒绝</a>
+            <a class="mini-button" img="../../scripts/miniui/res/images/accept.png">同意</a>
+        </td>
     </tr>
-
 
 </table>
 
-
-<script src="../../js/jquery-3.2.1.js" type="text/javascript"></script>
 <script type="text/javascript">
-    mini.parse();
 
 
-    $(document).ready(function () {
-
-
-        $(function(){
-            $("#other").bind("click",function(){
-                if(this.checked == false){
-                    $("#"+$(this).attr("traget")).hide();
-                }else{
-                    $("#"+$(this).attr("traget")).show();
-                }
-
-            })
-        });
-
-
-    });
 
 </script>
-
 </body>
 </html>
