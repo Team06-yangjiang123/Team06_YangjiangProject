@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="refresh" content="9.7;/main">
+    <meta http-equiv="refresh" content="9.6;/main">
     <title>进度条特效</title>
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
 

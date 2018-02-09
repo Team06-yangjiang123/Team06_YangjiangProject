@@ -27,10 +27,10 @@
 
     </style>
 </head>
-<body style="background-color: #0b549a">
+<body style="background-color: #1466b6">
 
 <div id="layout1" class="mini-layout" style="width:100%;height:100%;"  borderStyle="border:solid 1px #aaa;">
-    <div title="north" region="north" height="80" showSplitIcon="false" showHeader="false" showSplit="false">
+    <div title="north" region="north" height="80" showSplitIcon="false" showHeader="false" showSplit="false" style="border: 0px">
         <img src=../../img/pagerHeard.png style="position: absolute;width: 100%;height: 100%">
         <img src="../../img/user.png" style="width: 20px;height: 20px;position: absolute;z-index: 2; left: 55%;top: 7%">
         <span style="position: absolute;z-index: 2;font-size: 10px;left: 56.5%;top: 7%;">当前用户：${"#"}</span>
