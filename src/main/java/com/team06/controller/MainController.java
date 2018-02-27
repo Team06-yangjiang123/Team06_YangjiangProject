@@ -116,4 +116,28 @@ public class MainController {
         return "lodding";
     }
 
+    @RequestMapping(value = "/addCrew")
+    public String addCrew(){
+        return "addCrew";
+    }
+
+    @RequestMapping(value = "/addSatellite")
+    public String addSatellite(){
+        return "addSatellite";
+    }
+
+    @RequestMapping(value = "/addPlant")
+    public String addPlant(){
+        return "addPlant";
+    }
+
+    @RequestMapping(value = "/addRadiography")
+    public String addRadiography(){
+        return "addRadiography";
+    }
+
+
+
+
+
 }

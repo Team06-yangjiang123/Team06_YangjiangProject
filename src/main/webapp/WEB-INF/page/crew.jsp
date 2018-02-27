@@ -177,25 +177,27 @@
 
     }
 
-    //    //添加
-    //    function add() {
-    //
-    //        mini.open({
-    //            targetWindow: window,
-    //
-    //            url: bootPATH + "../demo/CommonLibs/EmployeeWindow.html",
-    //            title: "新增员工", width: 600, height: 400,
-    //            onload: function () {
-    //                var iframe = this.getIFrameEl();
-    //                var data = {action: "new"};
-    //                iframe.contentWindow.SetData(data);
-    //            },
-    //            ondestroy: function (action) {
-    //
-    //                grid.reload();
-    //            }
-    //        });
-    //    }
+    //添加
+    function add() {
+
+        mini.open({
+            targetWindow: window,
+
+            url: "addCrew",
+            title: "新增员工",
+            width: 600,
+            height: 400,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var data = {action: "new"};
+                iframe.contentWindow.SetData(data);
+            },
+            ondestroy: function (action) {
+
+                grid.reload();
+            }
+        });
+    }
 
     function remove() {
 
