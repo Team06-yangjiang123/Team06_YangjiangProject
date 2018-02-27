@@ -37,5 +37,6 @@
 
     <aop:config>
         <aop:pointcut id="pointCut" expression="execution(* com.team06.service..*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut"/>
     </aop:config>
 </beans>
