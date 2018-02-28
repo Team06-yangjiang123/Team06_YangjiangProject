@@ -117,10 +117,26 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = "/lodding")
-    public String lodding(){
-        return "lodding";
+    @RequestMapping(value = "/addCrew")
+    public String addCrew(){
+        return "addCrew";
     }
+
+    @RequestMapping(value = "/addPlant")
+    public String addPlant(){
+        return "addPlant";
+    }
+
+    @RequestMapping(value = "/addRadiography")
+    public String addRadiography(){
+        return "addRadiography";
+    }
+
+    @RequestMapping(value = "/addSatellite")
+    public String addSatellite(){
+        return "addSatellite";
+    }
+
 
     // 查询部门
 
