@@ -90,7 +90,7 @@
             <td class="trTitle">
                 <input id="btnEdit2"
                        class="mini-buttonedit"
-                       onbuttonclick="onButtonEdit"
+                       onbuttonclick="onButtonEdit1"
                        name="a" textName="b" style="width: 70%;height: 100%"/>
 
             </td>
@@ -98,7 +98,7 @@
             <td class="trTitle">
                 <input id="btnEdit3"
                        class="mini-buttonedit"
-                       onbuttonclick="onButtonEdit"
+                       onbuttonclick="onButtonEdit2"
                        name="a" textName="b" style="width: 70%;height: 100%"/>
 
             </td>
@@ -203,58 +203,13 @@
     }
 
 
-    function onClazzButtonEdit(e) {
-        var btnEdit = this;
-        mini.open({
-            url: "/page/select_clazz_gridwindow.jsp",
-            title: "选择班级列表",
-            width: '80%',
-            height: '80%',
-            showMaxButton: true,
-            ondestroy: function (action) {
-                if (action == "ok") {
-                    var iframe = this.getIFrameEl();
-                    var data = iframe.contentWindow.GetData();
-                    data = mini.clone(data);    //必须
-                    if (data) {
-                        console.log(data.cid + "--" + data.cname);
-                        btnEdit.setValue(data.cid);
-                        btnEdit.setText(data.cname);
-                    }
-                }
-            }
-        });
 
-    }
-    function onStudentButtonEdit(e) {
-        var btnEdit = this;
-        mini.open({
-            url: "/page/select_student_gridwindow.jsp",
-            title: "选择学生列表",
-            width: '80%',
-            height: '80%',
-            showMaxButton: true,
-            ondestroy: function (action) {
-                if (action == "ok") {
-                    var iframe = this.getIFrameEl();
-                    var data = iframe.contentWindow.GetData();
-                    data = mini.clone(data);    //必须
-                    if (data) {
-                        console.log(data.sid + "--" + data.sname);
-                        btnEdit.setValue(data.sid);
-                        btnEdit.setText(data.sname);
-                    }
-                }
-            }
-        });
 
-    }
-
-    function onButtonEdit(e) {
+    function onButtonEdit1(e) {
 
         var btnEdit = this;
         mini.open({
-            url: "/selectPerson",
+            url: "",
             title: "选择申请人",
             width: 550,
             height: 380,
@@ -274,80 +229,32 @@
         });
 
     }
+
+    function onButtonEdit2(e) {
+
+        var btnEdit = this;
+        mini.open({
+            url: "/selectPerson",
+            title: "选择部门",
+            width: 550,
+            height: 380,
+            ondestroy: function (action) {
+                //if (action == "close") return false;
+                if (action == "ok") {
+                    var iframe = this.getIFrameEl();
+                    var data = iframe.contentWindow.GetData();
+                    data = mini.clone(data);    //必须
+                    if (data) {
+                        btnEdit.setValue(data.id);
+                        btnEdit.setText(data.name);
+                    }
+                }
+
+            }
+        });
+
+    }
 </script>
-
-<%--<script type="text/javascript">--%>
-<%--mini.parse();--%>
-
-<%--var grid = mini.get("datagrid1");--%>
-<%--grid.load();--%>
-
-<%--///////////////////////////////////////////////////////--%>
-
-
-<%--var Genders = [{ num: 1, name: '项目申报',dept: '财政部',salary:'科技办经理审批',person:'张三',applytime:'1994-03-12',operation:'qwe'}];--%>
-<%--function onGenderRenderer(e) {--%>
-<%--for (var i = 0, l = Genders.length; i < l; i++) {--%>
-<%--var g = Genders[i];--%>
-<%--if (g.id == e.value) return g.text;--%>
-<%--}--%>
-<%--return "";--%>
-<%--}--%>
-
-<%--function addRow() {--%>
-<%--var newRow = { name: "New Row" };--%>
-<%--grid.addRow(newRow, 0);--%>
-<%--grid.validateRow(newRow);   //加入新行，马上验证新行--%>
-<%--}--%>
-<%--function removeRow() {--%>
-<%--var rows = grid.getSelecteds();--%>
-<%--if (rows.length > 0) {--%>
-<%--grid.removeRows(rows, true);--%>
-<%--}--%>
-<%--}--%>
-<%--function saveData() {--%>
-<%--grid.validate();--%>
-<%--if (grid.isValid() == false) {--%>
-<%--//alert("请校验输入单元格内容");--%>
-<%--var error = grid.getCellErrors()[0];--%>
-<%--grid.beginEditCell(error.record, error.column);--%>
-<%--return;--%>
-<%--}--%>
-
-<%--var data = grid.getChanges();--%>
-<%--var json = mini.encode(data);--%>
-
-<%--grid.loading("保存中，请稍后......");--%>
-<%--$.ajax({--%>
-<%--url: "../data/AjaxService.aspx?method=SaveEmployees",--%>
-<%--data: { data: json },--%>
-<%--type: "post",--%>
-<%--success: function (text) {--%>
-<%--grid.reload();--%>
-<%--},--%>
-<%--error: function (jqXHR, textStatus, errorThrown) {--%>
-<%--alert(jqXHR.responseText);--%>
-<%--}--%>
-<%--});--%>
-<%--}--%>
-<%--function onCellValidation(e) {--%>
-<%--if (e.field == "age") {--%>
-
-<%--if (e.value < 20) {--%>
-<%--e.isValid = false;--%>
-<%--e.errorText = "年龄必须大于20岁";--%>
-<%--}--%>
-<%--}--%>
-<%--if (e.field == "gender") {--%>
-<%--if (e.value == 0) {--%>
-<%--e.isValid = false;--%>
-<%--e.errorText = "不能为空";--%>
-<%--}--%>
-<%--}--%>
-<%--}--%>
-
-<%--</script>--%>
-
 
 </body>
 

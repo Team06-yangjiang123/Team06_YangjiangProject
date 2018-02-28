@@ -36,9 +36,8 @@
 
         <div property="columns">
 
-            <div field="loginname" width="120" headerAlign="center" allowSort="true">编号</div>
-            <div field="name" width="100%" headerAlign="center" allowSort="true">姓名</div>
-            <div field="loginname" width="120" headerAlign="center" allowSort="true">部门</div>
+            <div field="depId" width="120" headerAlign="center" allowSort="true">编号</div>
+            <div field="depName" width="100%" headerAlign="center" allowSort="true">部门名称</div>
         </div>
     </div>
 
@@ -54,16 +53,9 @@
         var grid = mini.get("grid1");
 
         //动态设置URL
-        //        grid.setUrl("../data/AjaxService.jsp?method=SearchEmployees");
-        //也可以动态设置列 grid.setColumns([]);
-        var data = [{"loginname":"1","name":"张小跳","createtime":"J0703"},
-            {"loginname":"2","name":"王大锤","createtime":"J1005"},
-            {"loginname":"3","name":"李大稳","createtime":"J0804"},
-            {"loginname":"4","name":"赵小六","createtime":"J1106"}];
-        grid.loadData(data);
-        //    grid.setColumns([]);
+        grid.setUrl("/selectDep");
 
-        //    grid.load();
+        grid.load();
 
         function GetData() {
             var row = grid.getSelected();
@@ -71,7 +63,7 @@
         }
         function search() {
             var key = mini.get("key").getValue();
-            grid.load({ key: key });
+            grid.load({ depName: key });
         }
         function onKeyEnter(e) {
             search();

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team06.mapper.DepMapper">
+
+    <!--结果集-->
+    <resultMap id="depMap" type="com.team06.domain.Department">
+        <id property="depId" column="dep_id"/>
+        <result property="depName" column="dep_name"/>
+    </resultMap>
+
+    <sql id="depColumns">
+        dep_id,dep_name
+    </sql>
+
+    <select id="getTotalRecord"
+            resultType="java.lang.Integer"
+            parameterType="com.team06.domain.Department">
+        SELECT COUNT(dep_id)
+        FROM department
+        <where>
+            1=1
+            <if test="depName != null and depName != ''">
+                AND dep_name LIKE '%${depName}%'
+            </if>
+        </where>
+    </select>
+
+    <select id="selectDep"
+            resultMap="depMap"
+            parameterType="com.team06.domain.Department">
+        SELECT
+        <include refid="depColumns"/>
+        FROM department
+        <where>
+            1=1
+            <if test="depName != null and depName != ''">
+                AND dep_name LIKE '%${depName}%'
+            </if>
+        </where>
+        limit #{pageBean.startIndex},#{pageBean.pageSize}
+    </select>
+
+</mapper>

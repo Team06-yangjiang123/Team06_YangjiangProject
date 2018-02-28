@@ -1,8 +1,14 @@
 package com.team06.controller;
 
+import com.team06.domain.BaseResult;
+import com.team06.domain.Department;
 import com.team06.domain.User;
+import com.team06.service.DepService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
 
 /**
  * Created by dllo on 18/2/2.
@@ -50,7 +56,7 @@ public class MainController {
 
     @RequestMapping(value = "/selectPerson")
     public String selectPerson(){
-        return "selectPerson";
+        return "selectDep";
     }
 
     @RequestMapping(value = "/chooseDept")
@@ -115,5 +121,23 @@ public class MainController {
     public String lodding(){
         return "lodding";
     }
+
+    // 查询部门
+
+    @Resource
+    private DepService depService;
+
+    @RequestMapping(value = "/selectDep")
+    @ResponseBody
+    public BaseResult<Department> selectDep(int pageIndex,
+                                            int pageSize,
+                                            Department department){
+
+        BaseResult<Department> baseResult = depService.selectDep(pageIndex+1,pageSize,department);
+        return baseResult;
+
+    }
+
+
 
 }
