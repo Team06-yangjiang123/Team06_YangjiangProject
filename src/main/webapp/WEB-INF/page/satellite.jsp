@@ -182,52 +182,52 @@
     //    var grid = mini.get("datagrid1");
     //    grid.load();
 
-    //    //添加
-    //    function add() {
-    //
-    //        mini.open({
-    //            targetWindow: window,
-    //
-    //            url: bootPATH + "../demo/CommonLibs/EmployeeWindow.html",
-    //            title: "新增员工", width: 600, height: 400,
-    //            onload: function () {
-    //                var iframe = this.getIFrameEl();
-    //                var data = {action: "new"};
-    //                iframe.contentWindow.SetData(data);
-    //            },
-    //            ondestroy: function (action) {
-    //
-    //                grid.reload();
-    //            }
-    //        });
-    //    }
-    //
-        function remove() {
+    //添加
+    function add() {
 
-            var rows = grid.getSelecteds();
-            if (rows.length > 0) {
-                if (confirm("确定删除选中记录？")) {
-                    var ids = [];
-                    for (var i = 0, l = rows.length; i < l; i++) {
-                        var r = rows[i];
-                        ids.push(r.id);
-                    }
-                    var id = ids.join(',');
-                    grid.loading("操作中，请稍后......");
-                    $.ajax({
-                        url: "../data/AjaxService.aspx?method=RemoveEmployees&id=" + id,
-                        success: function (text) {
-                            grid.reload();
-                        },
-                        error: function () {
-                        }
-                    });
-                }
-            } else {
-                alert("请选中一条记录");
+        mini.open({
+            targetWindow: window,
+
+            url: "addSatellite",
+            title: "新增卫星库", width: 600, height: 400,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var data = {action: "new"};
+                iframe.contentWindow.SetData(data);
+            },
+            ondestroy: function (action) {
+
+                grid.reload();
             }
+        });
+    }
+
+    function remove() {
+
+        var rows = grid.getSelecteds();
+        if (rows.length > 0) {
+            if (confirm("确定删除选中记录？")) {
+                var ids = [];
+                for (var i = 0, l = rows.length; i < l; i++) {
+                    var r = rows[i];
+                    ids.push(r.id);
+                }
+                var id = ids.join(',');
+                grid.loading("操作中，请稍后......");
+                $.ajax({
+                    url: "../data/AjaxService.aspx?method=RemoveEmployees&id=" + id,
+                    success: function (text) {
+                        grid.reload();
+                    },
+                    error: function () {
+                    }
+                });
+            }
+        } else {
+            alert("请选中一条记录");
         }
-//    ../data/AjaxService.aspx?method=RemoveEmployees&id="
+    }
+    //    ../data/AjaxService.aspx?method=RemoveEmployees&id="
 </script>
 </body>
 </html>

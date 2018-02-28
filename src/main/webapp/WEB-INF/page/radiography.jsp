@@ -71,7 +71,7 @@
         <tr class="colo">
             <td>关键字</td>
             <td id="w5"><input type="text" name="keyword"
-                                           style="height: 25px; width: 260px"></td>
+                               style="height: 25px; width: 260px"></td>
         </tr>
         <tr id="skill">
             <td id="first" colspan="4" style="background: aliceblue">
@@ -186,26 +186,28 @@
         });
 
     }
-//
-//    //添加
-//    function add() {
-//
-//        mini.open({
-//            targetWindow: window,
-//
-//            url: "",
-//            title: "新增员工", width: 600, height: 400,
-//            onload: function () {
-//                var iframe = this.getIFrameEl();
-//                var data = {action: "new"};
-//                iframe.contentWindow.SetData(data);
-//            },
-//            ondestroy: function (action) {
-//
-//                grid.reload();
-//            }
-//        });
-//    }
+
+    //添加
+    function add() {
+
+        mini.open({
+            targetWindow: window,
+
+            url: "addRadiography",
+            title: "新增员工",
+            width: 600,
+            height: 400,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var data = {action: "new"};
+                iframe.contentWindow.SetData(data);
+            },
+            ondestroy: function (action) {
+
+                grid.reload();
+            }
+        });
+    }
 
     function remove() {
 
