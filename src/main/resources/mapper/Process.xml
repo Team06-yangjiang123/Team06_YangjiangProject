@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team06.mapper.ProMapper">
+
+    <resultMap id="processMap" type="com.team06.domain.Process">
+        <id property="proId" column="pro_id"/>
+        <result property="proName" column="pro_name"/>
+        <result property="department" column="department"/>
+        <result property="step" column="step"/>
+        <result property="applicant" column="applicant"/>
+        <result property="applyTime" column="apply_time"/>
+    </resultMap>
+
+    <sql id="processColumns">
+        pro_id,pro_name,department,step,applicant,apply_time
+    </sql>
+
+    <sql id="proSql">
+        <where>
+            1=1
+            <if test="applyTime != null and applyTime != ''">
+                AND apply_time='${applyTime}'
+            </if>
+            <if test="applicant != null and applicant != ''">
+                AND applicant LIKE '%${applicant}%'
+            </if>
+            <if test="department != null and department != ''">
+                AND department LIKE '%${department}%'
+            </if>
+            <if test="proName != null and proName != ''">
+                AND pro_name LIKE '%${proName}%'
+            </if>
+        </where>
+    </sql>
+
+    <select id="getTotal"
+            resultType="java.lang.Integer"
+            parameterType="com.team06.domain.Process">
+        SELECT COUNT(pro_id)
+        FROM process
+        <include refid="proSql"/>
+    </select>
+    
+    <select id="selectAllPro"
+            resultMap="processMap"
+            parameterType="com.team06.domain.Process">
+        SELECT
+        <include refid="processColumns"/>
+        FROM process
+        <include refid="proSql"/>
+        limit #{pageBean.startIndex},#{pageBean.pageSize}
+    </select>
+</mapper>

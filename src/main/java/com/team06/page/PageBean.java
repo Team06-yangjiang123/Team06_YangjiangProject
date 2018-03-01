@@ -55,7 +55,7 @@ public class PageBean<T> {
 
         // 1.1  开始索引
         this.startIndex = (this.pageNum - 1) * this.pageSize;
-
+        this.startIndex = startIndex < 0? 0 : startIndex;
         //2 动态条 最多显示10分页，前5后4
         // 2.1 默认值
         this.begin = 1;
@@ -73,6 +73,7 @@ public class PageBean<T> {
             this.begin = this.pageNum - 5;
             this.end = this.pageNum + 4;
 
+//            this.startIndex = startIndex < 0? 0 : startIndex;
             // <%-- 头溢出 --%>
             // * pageNum = 1
             if (this.begin < 1) {
@@ -90,6 +91,7 @@ public class PageBean<T> {
         }
 
     }
+
 
     public int getTotalPage() {
         return totalPage;

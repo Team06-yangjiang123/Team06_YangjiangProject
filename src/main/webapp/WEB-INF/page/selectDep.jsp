@@ -53,7 +53,7 @@
         var grid = mini.get("grid1");
 
         //动态设置URL
-        grid.setUrl("/selectDep");
+        grid.setUrl("/selectDept");
 
         grid.load();
 

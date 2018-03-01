@@ -234,7 +234,7 @@
 
         var btnEdit = this;
         mini.open({
-            url: "/selectPerson",
+            url: "/selectDep",
             title: "选择部门",
             width: 550,
             height: 380,
@@ -245,8 +245,8 @@
                     var data = iframe.contentWindow.GetData();
                     data = mini.clone(data);    //必须
                     if (data) {
-                        btnEdit.setValue(data.id);
-                        btnEdit.setText(data.name);
+                        btnEdit.setValue(data.depId);
+                        btnEdit.setText(data.depName);
                     }
                 }
 

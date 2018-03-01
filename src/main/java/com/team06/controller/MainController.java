@@ -2,8 +2,10 @@ package com.team06.controller;
 
 import com.team06.domain.BaseResult;
 import com.team06.domain.Department;
+import com.team06.domain.Process;
 import com.team06.domain.User;
 import com.team06.service.DepService;
+import com.team06.service.ProService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,9 +56,9 @@ public class MainController {
         return "project_other";
     }
 
-    @RequestMapping(value = "/selectPerson")
+    @RequestMapping(value = "/selectDep")
     public String selectPerson(){
-        return "selectPerson";
+        return "selectDep";
     }
 
     @RequestMapping(value = "/chooseDept")
@@ -143,7 +145,7 @@ public class MainController {
     @Resource
     private DepService depService;
 
-    @RequestMapping(value = "/selectDep")
+    @RequestMapping(value = "/selectDept")
     @ResponseBody
     public BaseResult<Department> selectDep(int pageIndex,
                                             int pageSize,
@@ -154,6 +156,19 @@ public class MainController {
 
     }
 
+    @Resource
+    private ProService proService;
+
+    @RequestMapping(value = "/selectAllPro")
+    @ResponseBody
+    public BaseResult<Process> selectAllPro(int pageIndex,
+                                            int pageSize,
+                                            Process process){
+        BaseResult<Process> baseResult = proService.selectAllPro(process,pageIndex+1,pageSize);
+        System.out.println(process.getApplyTime());
+        System.out.println(process.getProName());
+        return baseResult;
+    }
 
 
 

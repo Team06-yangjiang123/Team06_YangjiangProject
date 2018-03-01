@@ -28,7 +28,7 @@
 <script type="text/javascript">
     $(function(){
 
-        var interval = setInterval(increment,100);
+        var interval = setInterval(increment,50);
         var current = 0;
 
         function increment(){
@@ -40,7 +40,7 @@
         $('.load-bar').mouseover(function(){
             clearInterval(interval);
         }).mouseout(function(){
-            interval = setInterval(increment,100);
+            interval = setInterval(increment,50);
         });
 
     });
