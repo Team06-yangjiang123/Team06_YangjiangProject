@@ -1,22 +1,25 @@
 package com.team06.controller;
 
-import com.team06.domain.BaseResult;
-import com.team06.domain.Department;
+import com.team06.domain.*;
 import com.team06.domain.Process;
-import com.team06.domain.User;
 import com.team06.service.DepService;
 import com.team06.service.ProService;
+import com.team06.service.StaffService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by dllo on 18/2/2.
  */
 @Controller
 public class MainController {
+
+    @Resource
+    private StaffService staffService;
 
     @RequestMapping(value = {"","/"})
     public String index(){
@@ -171,5 +174,27 @@ public class MainController {
     }
 
 
+    @RequestMapping(value = "/choosePerson")
+    public String choosePerson(){
+        return "choosePerson";
+    }
+
+    /*获取人员表数据，用于前端页面表格显示
+    * 返回数据以json格式返回*/
+    @RequestMapping(value = "/selectStaff")
+    @ResponseBody
+    public BaseResult<Staff> selectStaff() {
+
+        List<Staff> staffs = staffService.selectPerson();
+
+        /*将查询到的结果集进行封装*/
+        BaseResult<Staff> result = new BaseResult<Staff>();
+        result.setTotal(100);//设置条数
+        result.setData(staffs);
+
+        return result;
+
+
+    }
 
 }

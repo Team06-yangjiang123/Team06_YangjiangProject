@@ -180,7 +180,7 @@
     function onButtonEdit(e) {
         var btnEdit = this;
         mini.open({
-            url: "/technicalManager",
+            url: "/choosePerson",
             title: "选择技术部经理",
             width: 650,
             height: 380,
@@ -190,8 +190,8 @@
                     var data = iframe.contentWindow.GetData();
                     data = mini.clone(data);    //必须
                     if (data) {
-                        btnEdit.setValue(data.cid);
-                        btnEdit.setText(data.cname);
+                        btnEdit.setValue(data.staff_id);
+                        btnEdit.setText(data.staff_username);
                     }
                 }
             }
