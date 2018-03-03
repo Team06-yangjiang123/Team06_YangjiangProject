@@ -24,13 +24,13 @@
 
         }
         td{
-            border: 1px solid #b5e3ff;
+            border: 1px solid #c7eeff;
             collapse: 0;
         }
         .tdName{
             width: 10%;
             text-align: right;
-            background-color: #beeaff;
+            background-color: #dcf5ff;
             font-size: 13px;
         }
         .fonts{
@@ -43,12 +43,12 @@
 
 <table  cellspacing="0" cellpadding="0">
     <tr>
-        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#c0c3ff,#dcedff)">
+        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#c7ecff,#dcedff)">
            <img src="../../img/position.png" style="width: 15px;height: 15px">&nbsp;<span style="font-size: 10px">当前位置：承接外部科技项目申报</span>
         </td>
     </tr>
     <tr>
-        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#8cb7ff,#dcedff)">
+        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#a8d9ff,#dcedff)">
             <span style="font-size: 10px">&nbsp;&nbsp;&nbsp;项目基本信息</span>
         </td>
     </tr>
@@ -77,8 +77,8 @@
     </tr>
 
     <tr>
-        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#8cb7ff,#dcedff)">
-             <span style="font-size: 10px">项目成果</span>
+        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#b1d6ff,#dcedff)">
+             <span style="font-size: 10px">&nbsp;&nbsp;&nbsp;项目成果</span>
         </td>
     </tr>
     <tr style="height: 5%">
@@ -112,9 +112,9 @@
     </tr>
 
     <tr>
-        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#8cb7ff,#dcedff)" >
+        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#afd0ff,#dcedff)" >
 
-            <span style="font-size: 10px">预算信息</span>
+            <span style="font-size: 10px">&nbsp;&nbsp;&nbsp;预算信息</span>
 
         </td>
     </tr>
@@ -130,9 +130,9 @@
     </tr>
 
     <tr>
-        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#8cb7ff,#dcedff)">
+        <td colspan="4" style="height: 5%;background: linear-gradient(#d7f1ff,#b8dcff,#dcedff)">
 
-            <span style="font-size: 10px">流程信息</span>
+            <span style="font-size: 10px">&nbsp;&nbsp;&nbsp;流程信息</span>
 
         </td>
     </tr>
@@ -144,7 +144,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="4" style="text-align: right;background: linear-gradient(#cee2ff,#a8cdff,#ced7ff)"><a class="mini-button" href="/examine">提交</a></td>
+        <td colspan="4" style="text-align: right;background: linear-gradient(#cee2ff,#bddfff,#c6e5ff)"><a class="mini-button" href="/examine">提交</a></td>
     </tr>
 
 
