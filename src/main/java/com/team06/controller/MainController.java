@@ -171,112 +171,6 @@ public class MainController {
         return baseResult;
     }
 
-    @RequestMapping(value = "/choosePerson")
-    public String choosePerson(){
-        return "choosePerson";
-    }
-
-    /*获取人员表数据，用于前端页面表格显示
-    * 返回数据以json格式返回*/
-    @RequestMapping(value = "/selectStaff")
-    @ResponseBody
-    public BaseResult<Staff> selectStaff() {
-
-        List<Staff> staffs = staffService.selectPerson();
-
-        /*将查询到的结果集进行封装*/
-        BaseResult<Staff> result = new BaseResult<Staff>();
-        result.setTotal(100);//设置条数
-        result.setData(staffs);
-
-        return result;
-
-
-    }
-    @Resource
-    private SatelliteMngService satelliteMngService;
-
-    @RequestMapping(value = "/selectAllSatellite")
-    @ResponseBody
-    public BaseResult<SatelliteManager> selectAllSatellite(SatelliteManager satelliteManager,
-                                                           int pageIndex,
-                                                           int pageSize){
-        BaseResult<SatelliteManager> baseResult = satelliteMngService.selectAllSatellite(satelliteManager,pageIndex,pageSize);
-        return baseResult;
-    }
-
-    @Resource
-    private PlantService plantService;
-
-    @RequestMapping(value = "/selectAllPlant")
-    @ResponseBody
-    public BaseResult<Plant> selectAllPlant(Plant plant,
-                                            int pageIndex,
-                                            int pageSize){
-        BaseResult<Plant> baseResult = plantService.selectAllPlant(plant,pageIndex,pageSize);
-        return baseResult;
-    }
-
-    @Resource
-    private CrewService crewService;
-
-    @RequestMapping(value = "/selectAllCrew")
-    @ResponseBody
-    public BaseResult<Crew> selectAllCrew(Crew crew,
-                                          int pageIndex,
-                                          int pageSize){
-        BaseResult<Crew> baseResult = crewService.selectAllCrew(crew,pageIndex,pageSize);
-        return baseResult;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -306,7 +200,6 @@ public class MainController {
         result.setData(staffs);
 
         return result;
-
 
     }
 
