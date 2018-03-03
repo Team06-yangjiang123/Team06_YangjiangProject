@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--该文件是用于进行数据库表中某个表的操作声明，相当于dao层中的实现类-->
+<mapper namespace="com.team06.mapper.StaffMapper">
+
+    <!--结果集-->
+    <resultMap id="staffMap" type="com.team06.domain.Staff">
+        <id property="staffId" column="staff_id"/>
+        <result property="staffEmail" column="staff_email"/>
+        <result property="staffName" column="staff_username"/>
+    </resultMap>
+
+    <sql id="staffColumns">
+        staff_id,staff_email,staff_username
+    </sql>
+
+    <!--
+    select：查询标签，执行查询语句，常用属性：
+        id:唯一标识该操作的名称，对应接口（StaffDao）中的某个方法
+        parameterType:定义sql语句中需要的参数，即条件查询中的参数，对应接口中方法的参数列表
+        注意接口中参数只能有一个，对多个参数可以封装到pojo类中
+        resultType：返回结果声明，对应一个map
+    -->
+    <select id="selectPerson" resultType="com.team06.domain.Staff">
+        SELECT staff_id,staff_email,staff_username FROM staff
+    </select>
+
+
+    <select id="getTotalRecord"
+            resultType="java.lang.Integer"
+            parameterType="com.team06.domain.Staff">
+        SELECT COUNT(staff_id)
+        FROM staff
+        <where>
+            1=1
+            <if test="staff_username != null and staff_username != ''">
+                AND staff_username LIKE '%${staff_username}%'
+            </if>
+        </where>
+    </select>
+
+    <!--<select id="selectPerson"-->
+            <!--resultMap="staffMap"-->
+            <!--parameterType="com.team06.domain.Staff">-->
+        <!--SELECT-->
+        <!--<include refid="staffColumns"/>-->
+        <!--FROM staff-->
+        <!--<where>-->
+            <!--1=1-->
+            <!--<if test="staff_username != null and staff_username != ''">-->
+                <!--AND staff_username LIKE '%${staff_username}%'-->
+            <!--</if>-->
+        <!--</where>-->
+        <!--limit #{pageBean.startIndex},#{pageBean.pageSize}-->
+    <!--</select>-->
+
+</mapper>

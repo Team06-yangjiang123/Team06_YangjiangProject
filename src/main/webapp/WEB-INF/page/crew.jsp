@@ -131,8 +131,8 @@
                     var data = iframe.contentWindow.GetData();
                     data = mini.clone(data);    //必须
                     if (data) {
-                        btnEdit.setValue(data.id);
-                        btnEdit.setText(data.name);
+                        btnEdit.setValue(data.staff_id);
+                        btnEdit.setText(data.staff_username);
                     }
                 }
 
