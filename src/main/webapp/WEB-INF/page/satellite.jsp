@@ -60,7 +60,7 @@
     <table style="width:100%;" border="1" cellpadding="1" cellspacing="2">
         <tr class="colo">
             <td>卫星库名称</td>
-            <td id="w1"><input type="text" name="plantname" style="height: 25px; width: 260px"></td>
+            <td id="w1"><input id="key1" type="text" class="mini-textbox" style="width: 70%;height: 100%"></td>
             <td>管理人员</td>
             <td id="w2"><input id="btnEdit1"
                                class="mini-buttonedit user_add"
@@ -78,15 +78,15 @@
     </table>
 </div>
 
-<div id="datagrid1" class="mini-datagrid" style="width:100%;height:25%;"
+<div id="datagrid1" class="mini-datagrid" style="width:100%;height:60%;"
      idField="id" pageSize="5" multiSelect="true">
     <div property="columns">
-        <!--<div type="indexcolumn"></div>        -->
+
         <div type="checkcolumn"></div>
-        <div field="satellite" width="120" headerAlign="center" allowSort="true">卫星库</div>
-        <div field="name" width="120" headerAlign="center" allowSort="true">管理人员</div>
-        <div field="date" width="120" headerAlign="center" allowSort="true">创建日期</div>
-        <div field="judge" width="120" headerAlign="center" allowSort="true">是否有效</div>
+        <div field="satelliteName" width="120" headerAlign="center" allowSort="true">卫星库</div>
+        <div field="manager" width="120" headerAlign="center" allowSort="true">管理人员</div>
+        <div field="createDate" width="120" headerAlign="center" allowSort="true">创建日期</div>
+        <div field="isEnabled" width="120" headerAlign="center" allowSort="true">是否有效</div>
     </div>
 </div>
 
@@ -97,50 +97,18 @@
 
     var grid = mini.get("datagrid1");
 
-    // 分页填充细节处理
-    function fillData(pageIndex, pageSize, dataResult, grid) {
+    grid.setUrl("/selectAllSatellite");
+    grid.load();
 
-        var data = dataResult.data, totalCount = dataResult.total;
-
-        var arr = [];
-        var start = pageIndex * pageSize, end = start + pageSize;
-        for (var i = start, l = end; i < l; i++) {
-            var record = data[i];
-            if (!record) continue;
-            arr.push(record);
-        }
-
-
-        grid.setTotalCount(totalCount);
-        grid.setPageIndex(pageIndex);
-        grid.setPageSize(pageSize);
-
-        grid.setData(arr);
+    function search() {
+        var b = mini.get("key1").getValue();
+        var person = mini.get("btnEdit1").getText();
+        grid.load({satelliteName:b,manager:person});
     }
 
-    // 监听分页前事件，阻止后自行设置当前数据和分页信息
-    grid.on("beforeload", function (e) {
-        e.cancel = true;
-
-        var pageIndex = e.data.pageIndex, pageSize = e.data.pageSize;
-        fillData(pageIndex, pageSize, dataResult, grid);
-    });
-
-    ////////////////////////////////////////////////////////////////////////
-
-    // 获取所有数据和总记录数 { total: 100, data: [...] }
-    var dataResult = null;
-    $.ajax({
-        url: '../../data/satellite.txt',
-        dataType: 'text',
-        async: false,
-        success: function (text) {
-            dataResult = mini.decode(text);
-        }
-    });
-
-    // 第一次设置
-    fillData(0, grid.getPageSize(), dataResult, grid);
+    function onKeyEnter(e) {
+        search();
+    }
 
     /*返回表单数据*/
     function getForm() {
@@ -150,9 +118,6 @@
         return s;
     }
 
-    //
-    //    grid.load();
-    //
 
     function onButtonEdit(e) {
 

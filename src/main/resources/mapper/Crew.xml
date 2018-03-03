@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team06.mapper.CrewMapper">
+    <resultMap id="crewMap" type="com.team06.domain.Crew">
+        <id property="crewId" column="crew_id"/>
+        <result property="crewName" column="crew_name"/>
+        <result property="crewManager" column="crew_manager"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+    
+    <sql id="crewColumns">
+     crew_id,crew_name,crew_manager,create_date
+    </sql>
+
+    <sql id="crewSql">
+        <where>
+            1=1
+            <if test="crewName != null and crewName != ''">
+                AND crew_name LIKE '%${crewName}%'
+            </if>
+            <if test="crewManager != null and crewManager != ''">
+                AND crew_manager LIKE '%${crewManager}%'
+            </if>
+        </where>
+    </sql>
+    
+    <select id="getCrewTotal"
+            resultType="java.lang.Integer"
+            parameterType="com.team06.domain.Crew">
+        SELECT COUNT(crew_id) FROM crew
+       <include refid="crewSql"/>
+    </select>
+
+    <select id="selectAllCrew"
+            resultMap="crewMap"
+            parameterType="com.team06.domain.Crew">
+        SELECT
+        <include refid="crewColumns"/>
+        FROM crew
+        <include refid="crewSql"/>
+        limit #{pageBean.startIndex},#{pageBean.pageSize}
+    </select>
+        
+    
+</mapper>

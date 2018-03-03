@@ -60,7 +60,7 @@
 
         <tr class="colo">
             <td>机组名称</td>
-            <td id="w1"><input type="text" name="plantname" style="height: 25px; width: 260px"></td>
+            <td id="w1"><input id="key1" type="text" class="mini-textbox" style="width: 70%;height: 100%"></td>
             <td>机组管理人</td>
             <td id="w2"><input id="btnEdit1"
                                class="mini-buttonedit user_add"
@@ -77,15 +77,15 @@
         </tr>
     </table>
 </div>
-<div id="datagrid1" class="mini-datagrid" style="width:100%;height:25%;"
+<div id="datagrid1" class="mini-datagrid" style="width:100%;height:60%;"
      idField="id" pageSize="5" multiSelect="true">
 
     <div property="columns" id="form1">
-        <!--<div type="indexcolumn"></div>        -->
+
         <div type="checkcolumn"></div>
-        <div field="crew" width="120" headerAlign="center" allowSort="true">机组名称</div>
-        <div field="name" width="120" headerAlign="center" allowSort="true">机组管理人</div>
-        <div field="date" width="120" headerAlign="center" allowSort="true">创建日期</div>
+        <div field="crewName" width="120" headerAlign="center" allowSort="true">机组名称</div>
+        <div field="crewManager" width="120" headerAlign="center" allowSort="true">机组管理人</div>
+        <div field="createDate" width="120" headerAlign="center" allowSort="true">创建日期</div>
     </div>
 </div>
 
@@ -94,52 +94,20 @@
     mini.parse();
 
     var grid = mini.get("datagrid1");
+    grid.setUrl("/selectAllCrew");
+    grid.load();
 
-    // 分页填充细节处理
-    function fillData(pageIndex, pageSize, dataResult, grid) {
+    function search() {
 
-        var data = dataResult.data, totalCount = dataResult.total;
+        var b = mini.get("key1").getValue();
+        var person = mini.get("btnEdit1").getText();
 
-        var arr = [];
-        var start = pageIndex * pageSize, end = start + pageSize;
-        for (var i = start, l = end; i < l; i++) {
-            var record = data[i];
-            if (!record) continue;
-            arr.push(record);
-        }
-
-
-        grid.setTotalCount(totalCount);
-        grid.setPageIndex(pageIndex);
-        grid.setPageSize(pageSize);
-
-        grid.setData(arr);
+        grid.load({crewName:b,crewManager:person});
     }
 
-    // 监听分页前事件，阻止后自行设置当前数据和分页信息
-    grid.on("beforeload", function (e) {
-        e.cancel = true;
-
-        var pageIndex = e.data.pageIndex, pageSize = e.data.pageSize;
-        fillData(pageIndex, pageSize, dataResult, grid);
-    });
-
-    ////////////////////////////////////////////////////////////////////////
-
-    // 获取所有数据和总记录数 { total: 100, data: [...] }
-    var dataResult = null;
-    $.ajax({
-        url: '../../data/crewDate.txt',
-        dataType: 'text',
-        async: false,
-        success: function (text) {
-            dataResult = mini.decode(text);
-        }
-    });
-
-    // 第一次设置
-    fillData(0, grid.getPageSize(), dataResult, grid);
-
+    function onKeyEnter(e) {
+        search();
+    }
     /*返回表单数据*/
     function getForm() {
         var form = new mini.Form("#form1");
@@ -148,15 +116,11 @@
         return s;
     }
 
-    //
-    //    grid.load();
-    //
-
     function onButtonEdit(e) {
 
         var btnEdit = this;
         mini.open({
-            url: "/selectPerson",
+            url: "/choosePerson",
             title: "选择申请人",
             width: 550,
             height: 380,

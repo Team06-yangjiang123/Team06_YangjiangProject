@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team06.mapper.ProcessDoneMapper">
+    <resultMap id="processDoneMap" type="com.team06.domain.ProcessDone">
+        <id property="prodId" column="prod_id"/>
+        <result property="prodName" column="prod_name"/>
+        <result property="applyDept" column="apply_dept"/>
+        <result property="stepDone" column="step_done"/>
+        <result property="applyPerson" column="apply_person"/>
+        <result property="appTime" column="app_time"/>
+    </resultMap>
+
+    <sql id="processdColumns">
+        prod_id,prod_name,apply_dept,step_done,apply_person,app_time
+    </sql>
+
+    <sql id="processDoneSql">
+        <where>
+            1=1
+            <if test="appTime != null and appTime != ''">
+                AND app_time='${appTime}'
+            </if>
+            <if test="prodName != null and prodName != ''">
+                AND prod_name LIKE '%${prodName}%'
+            </if>
+            <if test="applyPerson != null and applyPerson != ''">
+                AND apply_person LIKE '%${applyPerson}%'
+            </if>
+            <if test="applyDept != null and applyDept != ''">
+                AND apply_dept LIKE '%${applyDept}%'
+            </if>
+        </where>
+    </sql>
+
+    <select id="getTotalRecord"
+            resultType="java.lang.Integer"
+            parameterType="com.team06.domain.ProcessDone">
+        SELECT COUNT(prod_id) FROM process_done
+        <include refid="processDoneSql"/>
+    </select>
+
+    <select id="selectProcessDone"
+            resultMap="processDoneMap"
+            parameterType="com.team06.domain.ProcessDone">
+        SELECT
+        <include refid="processdColumns"/>
+        FROM process_done
+        <include refid="processDoneSql"/>
+        limit #{pageBean.startIndex},#{pageBean.pageSize}
+    </select>
+
+
+</mapper>

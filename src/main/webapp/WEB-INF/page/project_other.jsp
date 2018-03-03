@@ -7,7 +7,7 @@
 <head>
     <title>基本</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <link href="css/demo.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/demo.css" rel="stylesheet" type="text/css"/>
 
     <script src="../../scripts/boot.js" type="text/javascript"></script>
     <style>
@@ -75,13 +75,11 @@
             <td class="righttd" style="width: 40%">
                 <input id="dateSel" class="mini-datepicker"
                        style="width:70%;height:100%;"
-                       allowInput="false"
-                <%--onbuttonclick="onStudentButtonEdit"--%>
-                       name="sid" textName="sname"/>
+                       allowInput="false"/>
             </td>
             <td class="content">关键字</td>
             <td>
-                <input type="text" name="keyword" style="width: 70%;height: 100%">
+                <input id="key" type="text" class="mini-textbox" style="width: 70%;height: 100%">
             </td>
         </tr>
 
@@ -91,7 +89,7 @@
                 <input id="btnEdit2"
                        class="mini-buttonedit"
                        onbuttonclick="onButtonEdit1"
-                       name="a" textName="b" style="width: 70%;height: 100%"/>
+                       style="width: 70%;height: 100%"/>
 
             </td>
             <td class="content">所属部门</td>
@@ -99,7 +97,7 @@
                 <input id="btnEdit3"
                        class="mini-buttonedit"
                        onbuttonclick="onButtonEdit2"
-                       name="a" textName="b" style="width: 70%;height: 100%"/>
+                       style="width: 70%;height: 100%"/>
 
             </td>
         </tr>
@@ -107,7 +105,8 @@
         <tr>
             <td colspan="4" class="content" style="text-align: right">
 
-                <button class="btn1" type="button" name="search"><img src="../../img/query.png" style="width: 16px;height: 16px">查询</button>
+                <a class="mini-button" style="width:60px;" onclick="search()">
+                    <img src="../../img/query.png" style="width: 16px;height: 16px">查询</a>
             </td>
 
 
@@ -121,12 +120,12 @@
     <div id="datagrid1" class="mini-datagrid" style="width:100%;height:71%;" idField="id" pageSize="10" multiSelect="true">
         <div property="columns">
             <div type="checkcolumn"></div>
-            <div field="num" width="120" align="center" headerAlign="center" vtype="required;email" autoEscape="true" allowSort="true">流程编号</div>
-            <div field="name" width="100" align="center" allowSort="true" >流程名称</div>
-            <div field="dept" width="100" align="center" allowSort="true" >申请部门</div>
-            <div field="link" width="100" align="center" allowSort="true" >当前环节</div>
-            <div field="person" width="100" align="center" allowSort="true" >提报人</div>
-            <div field="time" width="100" allowSort="true"  align="center" headerAlign="center">提报时间</div>
+            <div field="prodId" width="120" align="center" headerAlign="center" vtype="required;email" autoEscape="true" allowSort="true">流程编号</div>
+            <div field="prodName" width="100" align="center" allowSort="true"headerAlign="center" >流程名称</div>
+            <div field="applyDept" width="100" align="center" allowSort="true" headerAlign="center">申请部门</div>
+            <div field="stepDone" width="100" align="center" allowSort="true" headerAlign="center">当前环节</div>
+            <div field="applyPerson" width="100" align="center" allowSort="true" headerAlign="center">提报人</div>
+            <div field="appTime" width="100" allowSort="true"  align="center" headerAlign="center">提报时间</div>
             <div name="action" width="100" align="center"  headerAlign="center" renderer="onActionRenderer">操作</div>
         </div>
     </div>
@@ -137,6 +136,9 @@
     mini.parse();
 
     var grid = mini.get("datagrid1");
+    grid.setUrl("/selectAllProd");
+    grid.load();
+
     // 加入表格中的按钮
     function onActionRenderer(e) {
         var grid = e.sender;
@@ -149,51 +151,6 @@
         return s;
     }
 
-    // 分页填充细节处理
-    function fillData(pageIndex, pageSize, dataResult, grid) {
-
-        var data = dataResult.data, totalCount = dataResult.total;
-
-        var arr = [];
-        var start = pageIndex * pageSize, end = start + pageSize;
-        for (var i = start, l = end; i < l; i++) {
-            var record = data[i];
-            if (!record) continue;
-            arr.push(record);
-        }
-
-
-        grid.setTotalCount(totalCount);
-        grid.setPageIndex(pageIndex);
-        grid.setPageSize(pageSize);
-
-        grid.setData(arr);
-    }
-
-    // 监听分页前事件，阻止后自行设置当前数据和分页信息
-    grid.on("beforeload", function (e) {
-        e.cancel = true;
-
-        var pageIndex = e.data.pageIndex, pageSize = e.data.pageSize;
-        fillData(pageIndex, pageSize, dataResult, grid);
-    });
-
-    ////////////////////////////////////////////////////////////////////////
-
-    // 获取所有数据和总记录数 { total: 100, data: [...] }
-    var dataResult = null;
-    $.ajax({
-        url: '../../data/data.txt',
-        dataType: 'text',
-        async: false,
-        success: function (text) {
-            dataResult = mini.decode(text);
-        }
-    });
-
-    // 第一次设置
-    fillData(0, grid.getPageSize(), dataResult, grid);
-
     /*返回表单数据*/
     function getForm() {
         var form = new mini.Form("#form1");
@@ -202,6 +159,33 @@
         return s;
     }
 
+    function search() {
+        var a = mini.get("dateSel").getValue();
+        var b = mini.get("key").getValue();
+        var time = null;
+        if (a !=null && a !=''){
+            time= formatDate(a);
+        }
+        var person = mini.get("btnEdit2").getText();
+        var dept = mini.get("btnEdit3").getText();
+        console.log(time+b+person+dept);
+        grid.load({appTime:time,prodName:b,applyPerson:person,applyDept:dept});
+    }
+    function formatTen(num) {
+        return num > 9 ? (num + "") : ("0" + num);
+    }
+    function formatDate(date) {
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        return year + "-" + formatTen(month) + "-" + formatTen(day);
+    }
+    function onKeyEnter(e) {
+        search();
+    }
 
 
 

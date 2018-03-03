@@ -84,7 +84,7 @@
 </div>
 
 
-<div id="datagrid1" class="mini-datagrid" style="width:100%;height:25%;"
+<div id="datagrid1" class="mini-datagrid" style="width:100%;height:60%;"
      idField="id" pageSize="5" multiSelect="true">
     <div property="columns" id="form1">
         <div type="checkcolumn"></div>

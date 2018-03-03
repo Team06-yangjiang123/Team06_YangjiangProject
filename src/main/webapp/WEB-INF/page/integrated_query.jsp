@@ -64,29 +64,30 @@
             </td>
             <td>申请人</td>
             <td id="w2"><input id="btnEdit1"
-            <%--class="mini-buttonedit"--%>
                                class="mini-buttonedit user_add"
-                               onbuttonclick="onButtonEdit"
+                               onbuttonclick="onButtonEdit1"
                                style="height: 25px; width: 260px"/>
             </td>
             <td>关键字</td>
-            <td id="w3"><input type="text" name="keyword"
-                               style="height: 25px; width: 253px"></td>
+            <td id="w3"><input id="key1" type="text" class="mini-textbox" style="width: 70%;height: 100%"></td>
         </tr>
         <tr class="colo">
-            <td>流程类型</td>
-            <td id="w4"><input name="FlowType" showNullItem="true"
+            <td>流程名称</td>
+            <td id="w4"><input
+                    id="key2"
+                    name="FlowType" showNullItem="true"
                                class="mini-combobox" url="../../data/flowType.txt"
-                               value="cn" textField="text" valueField="id"
+                    textField="text" valueField="id"
                                style="height: 25px; width: 260px"/></td>
             <td>所属部门</td>
             <td id="w5"><input id="btnEdit2"
-            <%--class="mini-buttonedit"--%>
                                class="mini-buttonedit user_add"
-                               onbuttonclick="onButtonEdit"
+                               onbuttonclick="onButtonEdit2"
                                style="height: 25px; width: 260px"/></td>
             <td>是否可以打印</td>
-            <td id="w6"><input name="Judge" showNullItem="true"
+            <td id="w6"><input
+                    id="key3"
+                    name="Judge" showNullItem="true"
                                class="mini-combobox" url="../../data/judge.txt"
                                value="true" textField="text" valueField="id"
                                style="height: 25px; width: 260px"/></td>
@@ -100,26 +101,23 @@
     </table>
 </div>
 
-<div id="datagrid1" class="mini-datagrid" style="width:100%;height:68%;"
+<div id="datagrid1" class="mini-datagrid" style="width:100%;height:60%;"
      idField="id" pageSize="20" multiSelect="true">
     <div property="columns">
-        <%--<div type="indexcolumn"></div>--%>
-        <div type="checkcolumn"></div>
-        <div field="loginname" width="120" headerAlign="center" allowSort="true" align="center">流程编号</div>
-        <div field="name" width="120" headerAlign="center" allowSort="true" align="center">流程名称</div>
-        <div field="dept" width="120" headerAlign="center" allowSort="true" align="center">所属部门</div>
-        <div field="tache" width="100" headerAlign="center" allowSort="true" align="center">当前环节</div>
-        <div field="person" width="100" headerAlign="center" allowSort="true" align="center">提报人</div>
-        <div field="judege" width="100" headerAlign="center" allowSort="true" align="center">是否可以打印</div>
-        <div name="action" width="100" align="center" headerAlign="center" allowSort="true">操作</div>
 
-        <%--<a class="mini-button" img="../../search.gif">查询</a>--%>
+        <div type="checkcolumn"></div>
+        <div field="proId" width="120" headerAlign="center" allowSort="true" align="center">流程编号</div>
+        <div field="proName" width="120" headerAlign="center" allowSort="true" align="center">流程名称</div>
+        <div field="department" width="120" headerAlign="center" allowSort="true" align="center">所属部门</div>
+        <div field="step" width="100" headerAlign="center" allowSort="true" align="center">当前环节</div>
+        <div field="applicant" width="100" headerAlign="center" allowSort="true" align="center">提报人</div>
+        <div field="print" width="100" headerAlign="center" allowSort="true" align="center">是否可以打印</div>
+        <div name="action" width="100" align="center" headerAlign="center" allowSort="true">操作</div>
 
     </div>
 </div>
 
 
-<%--<a class="mini-button" iconCls="icon-print">打印</a>--%>
 
 
 <script type="text/javascript">
@@ -127,6 +125,8 @@
 
     var grid = mini.get("datagrid1");
 
+    grid.setUrl("/selectAllPro");
+    grid.load();
 
 
     grid.on("drawcell", function (e) {
@@ -140,53 +140,36 @@
             e.cellHtml = '<a class="mini-button"  style="width: 40px" href="/contractApproval">' +
             '<img src="../../scripts/miniui/themes/icons/edit.gif">流程</a>'
         }
-
     });
 
-    // 分页填充细节处理
-    function fillData(pageIndex, pageSize, dataResult, grid) {
-
-        var data = dataResult.data, totalCount = dataResult.total;
-
-        var arr = [];
-        var start = pageIndex * pageSize, end = start + pageSize;
-        for (var i = start, l = end; i < l; i++) {
-            var record = data[i];
-            if (!record) continue;
-            arr.push(record);
+    function search() {
+        var a = mini.get("date1").getValue();//时间
+        var b = mini.get("key1").getValue();//关键字
+        var time = null;
+        if (a !=null && a !=''){
+            time= formatDate(a);
         }
-
-
-        grid.setTotalCount(totalCount);
-        grid.setPageIndex(pageIndex);
-        grid.setPageSize(pageSize);
-
-        grid.setData(arr);
+        var key2 = mini.get("key2").getValue();
+        var person = mini.get("btnEdit2").getText();//部门
+        var dept = mini.get("key3").getValue();// 打印
+        console.log(time+b+person+dept);
+        grid.load({applyTime:time,proName:b,proName:key2,department:person,print:dept});
     }
-
-    // 监听分页前事件，阻止后自行设置当前数据和分页信息
-    grid.on("beforeload", function (e) {
-        e.cancel = true;
-
-        var pageIndex = e.data.pageIndex, pageSize = e.data.pageSize;
-        fillData(pageIndex, pageSize, dataResult, grid);
-    });
-
-    ////////////////////////////////////////////////////////////////////////
-
-    // 获取所有数据和总记录数 { total: 100, data: [...] }
-    var dataResult = null;
-    $.ajax({
-        url: '../../data/data1.txt',
-        dataType: 'text',
-        async: false,
-        success: function (text) {
-            dataResult = mini.decode(text);
-        }
-    });
-
-    // 第一次设置
-    fillData(0, grid.getPageSize(), dataResult, grid);
+    function formatTen(num) {
+        return num > 9 ? (num + "") : ("0" + num);
+    }
+    function formatDate(date) {
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        return year + "-" + formatTen(month) + "-" + formatTen(day);
+    }
+    function onKeyEnter(e) {
+        search();
+    }
 
     /*返回表单数据*/
     function getForm() {
@@ -196,15 +179,11 @@
         return s;
     }
 
-    //
-    //    grid.load();
-    //
-
-    function onButtonEdit(e) {
+    function onButtonEdit1(e) {
 
         var btnEdit = this;
         mini.open({
-            url: "/selectPerson",
+            url: "",
             title: "选择申请人",
             width: 550,
             height: 380,
@@ -217,6 +196,30 @@
                     if (data) {
                         btnEdit.setValue(data.id);
                         btnEdit.setText(data.name);
+                    }
+                }
+
+            }
+        });
+
+    }
+    function onButtonEdit2(e) {
+
+        var btnEdit = this;
+        mini.open({
+            url: "/selectDep",
+            title: "选择部门",
+            width: 550,
+            height: 380,
+            ondestroy: function (action) {
+                //if (action == "close") return false;
+                if (action == "ok") {
+                    var iframe = this.getIFrameEl();
+                    var data = iframe.contentWindow.GetData();
+                    data = mini.clone(data);    //必须
+                    if (data) {
+                        btnEdit.setValue(data.depId);
+                        btnEdit.setText(data.depName);
                     }
                 }
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team06.mapper.PlantMapper">
+    <resultMap id="plantMap" type="com.team06.domain.Plant">
+        <id property="plantId" column="plant_id"/>
+        <result property="plantName" column="plant_name"/>
+        <result property="plantManager" column="plant_manager"/>
+        <result property="plantAddress" column="plant_address"/>
+        <result property="plantDate" column="plant_date"/>
+        <result property="crewId" column="crew_id"/>
+    </resultMap>
+
+    <sql id="plantColumns">
+      plant_id, plant_name,plant_manager,plant_address,plant_date,crew_id
+    </sql>
+    <sql id="plantSql">
+        <where>
+            1=1
+            <if test="plantName != null and plantName != ''">
+                AND plant_name LIKE '%${plantName}%'
+            </if>
+            <if test="plantManager != null and plantManager != ''">
+                AND plant_manager LIKE '%${plantManager}%'
+            </if>
+            <if test="plantAddress != null and plantAddress != ''">
+                AND plant_address LIKE '%${plantAddress}%'
+            </if>
+            <if test="crewId != null and crewId != ''">
+                AND crew_id='#{crewId}'
+            </if>
+
+        </where>
+    </sql>
+
+    <select id="getPlantTotal"
+            resultType="java.lang.Integer"
+            parameterType="com.team06.domain.Plant">
+        SELECT COUNT(plant_id) FROM plant
+        <include refid="plantSql"/>
+    </select>
+
+    <select id="selectAllPlant"
+            resultMap="plantMap"
+            parameterType="com.team06.domain.Plant">
+        SELECT
+        <include refid="plantColumns"/>
+        FROM plant
+        <include refid="plantSql"/>
+        limit #{pageBean.startIndex},#{pageBean.pageSize}
+    </select>
+</mapper>

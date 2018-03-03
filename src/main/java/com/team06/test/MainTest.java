@@ -2,8 +2,12 @@ package com.team06.test;
 
 import com.team06.domain.Department;
 import com.team06.domain.Process;
+import com.team06.domain.ProcessDone;
+import com.team06.domain.SatelliteManager;
 import com.team06.mapper.DepMapper;
 import com.team06.mapper.ProMapper;
+import com.team06.mapper.ProcessDoneMapper;
+import com.team06.mapper.SatelliteManagerMapper;
 import com.team06.page.PageBean;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,12 +24,16 @@ public class MainTest {
     private ApplicationContext context;
     private DepMapper depMapper;
     private ProMapper proMapper;
+    private ProcessDoneMapper doneMapper;
+    private SatelliteManagerMapper satelliteManagerMapper;
     @Before
     public void init(){
 
         context = new ClassPathXmlApplicationContext("classpath*:spring-*.xml");
         depMapper = context.getBean(DepMapper.class);
         proMapper = context.getBean(ProMapper.class);
+        doneMapper = context.getBean(ProcessDoneMapper.class);
+        satelliteManagerMapper = context.getBean(SatelliteManagerMapper.class);
     }
 
     @Test
@@ -53,6 +61,30 @@ public class MainTest {
         List<Process> processes = proMapper.selectAllPro(process);
         System.out.println(processes);
 
+
+    }
+
+    @Test
+    public void processDoneTest(){
+        ProcessDone processDone = new ProcessDone();
+        processDone.setAppTime("2018-02-08");
+        int count = doneMapper.getTotalRecord(processDone);
+        System.out.println(count);
+        PageBean<ProcessDone> pageBean = new PageBean<ProcessDone>(2,3,count);
+        processDone.setPageBean(pageBean);
+        List<ProcessDone> processDones = doneMapper.selectProcessDone(processDone);
+        for (ProcessDone done : processDones) {
+            System.out.println(done);
+        }
+
+    }
+
+    @Test
+    public void satelliteTest(){
+        SatelliteManager satelliteManager = new SatelliteManager();
+        satelliteManager.setSatelliteName("卫星库1");
+        int count = satelliteManagerMapper.getSatTotal(satelliteManager);
+        System.out.println(count);
 
     }
 

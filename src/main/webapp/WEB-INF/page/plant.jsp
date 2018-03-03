@@ -59,7 +59,7 @@
     <table style="width:100%;" border="1" cellpadding="1" cellspacing="2">
         <tr class="colo">
             <td>厂房名称</td>
-            <td id="w1"><input type="text" name="plantname" style="height: 25px; width: 260px"></td>
+            <td id="w1"><input id="key" type="text" class="mini-textbox" style="width: 70%;height: 100%"></td>
             <td>厂房经理</td>
             <td id="w2"><input id="btnEdit1"
                                class="mini-buttonedit user_add"
@@ -68,9 +68,9 @@
         </tr>
         <tr class="colo">
             <td>厂房地址</td>
-            <td id="w3"><input type="text" name="address" style="height: 25px; width: 260px"></td>
+            <td id="w3"><input id="key1" type="text" class="mini-textbox" style="width: 70%;height: 100%"></td>
             <td>机组</td>
-            <td id="w4"><input name="Dept" showNullItem="true"
+            <td id="w4"><input id="crew" showNullItem="true"
                                class="mini-combobox" url="../../data/crew.txt"
                                value="a" textField="text" valueField="id"
                                style="height: 25px; width: 260px"/></td>
@@ -87,15 +87,15 @@
 </div>
 
 
-<div id="datagrid1" class="mini-datagrid" style="width:100%;height:25%;"
+<div id="datagrid1" class="mini-datagrid" style="width:100%;height:60%;"
      idField="id" pageSize="5" multiSelect="true">
     <div property="columns" id="form1">
         <div type="checkcolumn"></div>
-        <div field="crew" width="120" headerAlign="center" allowSort="true">机组</div>
-        <div field="plantname" width="120" headerAlign="center" allowSort="true">厂房名称</div>
-        <div field="manager" width="120" headerAlign="center" allowSort="true">厂房经理</div>
-        <div field="address" width="120" headerAlign="center" allowSort="true">厂房地址</div>
-        <div field="date" width="120" headerAlign="center" allowSort="true">创建日期</div>
+        <div field="crewId" width="120" headerAlign="center" allowSort="true">机组</div>
+        <div field="plantName" width="120" headerAlign="center" allowSort="true">厂房名称</div>
+        <div field="plantManager" width="120" headerAlign="center" allowSort="true">厂房经理</div>
+        <div field="plantAddress" width="120" headerAlign="center" allowSort="true">厂房地址</div>
+        <div field="plantDate" width="120" headerAlign="center" allowSort="true">创建日期</div>
     </div>
 </div>
 
@@ -105,50 +105,8 @@
 
     var grid = mini.get("datagrid1");
 
-    // 分页填充细节处理
-    function fillData(pageIndex, pageSize, dataResult, grid) {
-
-        var data = dataResult.data, totalCount = dataResult.total;
-
-        var arr = [];
-        var start = pageIndex * pageSize, end = start + pageSize;
-        for (var i = start, l = end; i < l; i++) {
-            var record = data[i];
-            if (!record) continue;
-            arr.push(record);
-        }
-
-
-        grid.setTotalCount(totalCount);
-        grid.setPageIndex(pageIndex);
-        grid.setPageSize(pageSize);
-
-        grid.setData(arr);
-    }
-
-    // 监听分页前事件，阻止后自行设置当前数据和分页信息
-    grid.on("beforeload", function (e) {
-        e.cancel = true;
-
-        var pageIndex = e.data.pageIndex, pageSize = e.data.pageSize;
-        fillData(pageIndex, pageSize, dataResult, grid);
-    });
-
-    ////////////////////////////////////////////////////////////////////////
-
-    // 获取所有数据和总记录数 { total: 100, data: [...] }
-    var dataResult = null;
-    $.ajax({
-        url: '../../data/plant.txt',
-        dataType: 'text',
-        async: false,
-        success: function (text) {
-            dataResult = mini.decode(text);
-        }
-    });
-
-    // 第一次设置
-    fillData(0, grid.getPageSize(), dataResult, grid);
+    grid.setUrl("/selectAllPlant");
+    grid.load();
 
     /*返回表单数据*/
     function getForm() {
@@ -158,10 +116,16 @@
         return s;
     }
 
-    //
-    //    grid.load();
-    //
+    function search() {
+        var a = mini.get("key").getValue();//名称
+        var b = mini.get("key1").getValue();//地址
+        var person = mini.get("btnEdit1").getText();//经理
+        var crew = mini.get("crew").getValue();//机组
+        grid.load({plantName:a,plantAddress:b,plantManager:person,crewId:crew});
+    }
 
+    function onKeyEnter(e) {
+        search();
     function onButtonEdit(e) {
 
         var btnEdit = this;
@@ -231,7 +195,7 @@
         } else {
             alert("请选中一条记录");
         }
-    }
+    }}
 
 
 </script>

@@ -12,6 +12,7 @@ public class Process {
     private int proId;
     private String proName,department,step,applicant;
     private String applyTime;
+    private String print;
     private PageBean<Process> pageBean;
 
     public Process(String proName, String department, String step, String applicant, String applyTime) {
@@ -23,6 +24,14 @@ public class Process {
     }
 
     public Process() {
+    }
+
+    public String getPrint() {
+        return print;
+    }
+
+    public void setPrint(String print) {
+        this.print = print;
     }
 
     public PageBean<Process> getPageBean() {

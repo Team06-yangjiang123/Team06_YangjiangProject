@@ -11,10 +11,11 @@
         <result property="step" column="step"/>
         <result property="applicant" column="applicant"/>
         <result property="applyTime" column="apply_time"/>
+        <result property="print" column="print"/>
     </resultMap>
 
     <sql id="processColumns">
-        pro_id,pro_name,department,step,applicant,apply_time
+        pro_id,pro_name,department,step,applicant,apply_time,print
     </sql>
 
     <sql id="proSql">
@@ -31,6 +32,9 @@
             </if>
             <if test="proName != null and proName != ''">
                 AND pro_name LIKE '%${proName}%'
+            </if>
+            <if test="print != null and print != ''">
+                AND print='${print}'
             </if>
         </where>
     </sql>

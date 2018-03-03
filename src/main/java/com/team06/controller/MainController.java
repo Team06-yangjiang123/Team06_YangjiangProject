@@ -1,11 +1,8 @@
 package com.team06.controller;
 
-import com.team06.domain.BaseResult;
-import com.team06.domain.Department;
+import com.team06.domain.*;
 import com.team06.domain.Process;
-import com.team06.domain.User;
-import com.team06.service.DepService;
-import com.team06.service.ProService;
+import com.team06.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -81,8 +78,6 @@ public class MainController {
         return "applyTable";
     }
 
-
-
     @RequestMapping(value = "/integratedQuery")
     public String integratedQuery(){
         return "integrated_query";
@@ -118,7 +113,6 @@ public class MainController {
         return "examine";
     }
 
-
     @RequestMapping(value = "/addCrew")
     public String addCrew(){
         return "addCrew";
@@ -139,7 +133,6 @@ public class MainController {
         return "addSatellite";
     }
 
-
     // 查询部门
 
     @Resource
@@ -156,6 +149,7 @@ public class MainController {
 
     }
 
+    // 待办页面查询待办流程表
     @Resource
     private ProService proService;
 
@@ -170,6 +164,53 @@ public class MainController {
         return baseResult;
     }
 
+    // 已办页面查询已办流程表
+    @Resource
+    private ProDoneService proDoneService;
 
+    @RequestMapping(value = "/selectAllProd")
+    @ResponseBody
+    public BaseResult<ProcessDone> selectAllProd(ProcessDone processDone,
+                                                 int pageIndex,
+                                                 int pageSize){
+        BaseResult<ProcessDone> baseResult = proDoneService.selectAllProd(processDone,pageIndex,pageSize);
+        return baseResult;
 
+    }
+
+    @Resource
+    private SatelliteMngService satelliteMngService;
+
+    @RequestMapping(value = "/selectAllSatellite")
+    @ResponseBody
+    public BaseResult<SatelliteManager> selectAllSatellite(SatelliteManager satelliteManager,
+                                                           int pageIndex,
+                                                           int pageSize){
+        BaseResult<SatelliteManager> baseResult = satelliteMngService.selectAllSatellite(satelliteManager,pageIndex,pageSize);
+        return baseResult;
+    }
+
+    @Resource
+    private PlantService plantService;
+
+    @RequestMapping(value = "/selectAllPlant")
+    @ResponseBody
+    public BaseResult<Plant> selectAllPlant(Plant plant,
+                                            int pageIndex,
+                                            int pageSize){
+        BaseResult<Plant> baseResult = plantService.selectAllPlant(plant,pageIndex,pageSize);
+        return baseResult;
+    }
+
+    @Resource
+    private CrewService crewService;
+
+    @RequestMapping(value = "/selectAllCrew")
+    @ResponseBody
+    public BaseResult<Crew> selectAllCrew(Crew crew,
+                                          int pageIndex,
+                                          int pageSize){
+        BaseResult<Crew> baseResult = crewService.selectAllCrew(crew,pageIndex,pageSize);
+        return baseResult;
+    }
 }

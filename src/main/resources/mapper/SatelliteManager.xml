@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team06.mapper.SatelliteManagerMapper">
+
+    <resultMap id="satelliteManagerMap" type="com.team06.domain.SatelliteManager">
+        <id property="satelliteName" column="satellite_name"/>
+        <result property="manager" column="manager"/>
+        <result property="createDate" column="create_date"/>
+        <result property="isEnabled" column="is_enabled"/>
+    </resultMap>
+
+    <sql id="satelliteManagerColumns">
+        satellite_name,manager,create_date,is_enabled
+    </sql>
+
+    <sql id="satelliteManagerSql">
+        <where>
+            1=1
+            <if test="satelliteName != null and satelliteName != ''">
+                AND satellite_name LIKE '%${satelliteName}%'
+            </if>
+            <if test="manager != null and manager != ''">
+                AND manager LIKE '%${manager}%'
+            </if>
+
+        </where>
+    </sql>
+    <select id="getSatTotal"
+            resultType="java.lang.Integer"
+            parameterType="com.team06.domain.SatelliteManager">
+        SELECT COUNT(satellite_id) FROM satellite_manager
+       <include refid="satelliteManagerSql"/>
+    </select>
+
+    <select id="selectAllSatellite"
+            resultMap="satelliteManagerMap"
+            parameterType="com.team06.domain.SatelliteManager">
+        SELECT
+        <include refid="satelliteManagerColumns"/>
+        FROM satellite_manager
+        <include refid="satelliteManagerSql"/>
+        limit #{pageBean.startIndex},#{pageBean.pageSize}
+    </select>
+
+
+
+</mapper>
