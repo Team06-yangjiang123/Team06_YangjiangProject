@@ -77,7 +77,7 @@
                     <label for="loginTable">帐号：</label>
                 </td>
                 <td>
-                    <input name="username" errorMode="none" onvalidation="onUserNameValidation" class="mini-textbox" required="true" requiredErrorText="帐号不能为空"/>
+                    <input name="staffUsername" errorMode="none" onvalidation="onUserNameValidation" class="mini-textbox" required="true" requiredErrorText="帐号不能为空"/>
                 </td>
                 <td id="username_error" class="errorText" style="font-size: 2px"></td>
             </tr>
@@ -86,7 +86,7 @@
                     <label for="loginTable">密码：</label>
                 </td>
                 <td>
-                    <input name="password" errorMode="none" onvalidation="onPwdValidation" class="mini-password" required="true" vtype="minLength:5" minLengthErrorText="密码不能少于5个字符"/>
+                    <input name="staffPwd" errorMode="none" onvalidation="onPwdValidation" class="mini-password" required="true" vtype="minLength:5" minLengthErrorText="密码不能少于5个字符"/>
                 </td>
                 <td id="pwd_error" class="errorText" style="font-size: 2px"></td>
             </tr>

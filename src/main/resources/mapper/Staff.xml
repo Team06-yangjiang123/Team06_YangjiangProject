@@ -9,11 +9,15 @@
     <resultMap id="staffMap" type="com.team06.domain.Staff">
         <id property="staffId" column="staff_id"/>
         <result property="staffEmail" column="staff_email"/>
-        <result property="staffName" column="staff_username"/>
+        <result property="staffUsername" column="staff_username"/>
+        <result property="staffPwd" column="staff_pwd"/>
+        <result property="staffDepId" column="staff_dep_id"/>
+        <result property="roleId" column="role_id"/>
     </resultMap>
 
     <sql id="staffColumns">
-        staff_id,staff_email,staff_username
+        staff_id,staff_email,staff_username,
+        staff_pwd,staff_dep_id,role_id
     </sql>
 
     <!--
@@ -39,6 +43,22 @@
                 AND staff_username LIKE '%${staff_username}%'
             </if>
         </where>
+    </select>
+
+    <select id="selectByStaffName"
+            resultMap="staffMap">
+        SELECT
+        <include refid="staffColumns"/>
+        FROM staff
+        WHERE staff_username=#{VALUE }
+    </select>
+
+    <select id="selectByStaffPwd"
+            resultMap="staffMap">
+        SELECT
+        <include refid="staffColumns"/>
+        FROM staff
+        WHERE staff_pwd=#{VALUE }
     </select>
 
     <!--<select id="selectPerson"-->

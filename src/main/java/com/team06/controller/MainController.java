@@ -6,6 +6,10 @@ import com.team06.service.*;
 import com.team06.service.DepService;
 import com.team06.service.ProService;
 import com.team06.service.StaffService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,11 +32,28 @@ public class MainController {
     }
 
     @RequestMapping(value = "/home")
-    public String home(User user){
-        if (user.getUsername().equals("123456") && user.getPassword().equals("654321")){
-            return "lodding";
+    public String home(Staff staff){
+        //        if (user.getUsername().equals("123456") && user.getPassword().equals("654321")){
+//            return "lodding";
+//        }
+//        return "index";
+
+        System.out.println("表单提交"+staff);
+        //1.获得当前对象
+        Subject currentStaff = SecurityUtils.getSubject();
+
+        //2.创建用户名密码令牌
+        UsernamePasswordToken token = new UsernamePasswordToken(
+                staff.getStaffUsername(),staff.getStaffPwd());
+
+        //3.进行shiro认证
+        try {
+            currentStaff.login(token);
+        }catch (AuthenticationException e){
+            e.printStackTrace();
+            return "index";
         }
-        return "index";
+        return "lodding";
     }
 
     @RequestMapping(value = "/main")

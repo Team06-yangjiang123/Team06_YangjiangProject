@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by dllo on 2018/2/28.
@@ -29,5 +30,20 @@ public class StaffServiceImpl implements StaffService {
 
     public List<Staff> selectPerson() {
         return staffMapper.selectPerson();
+    }
+    public Staff selectByStaffName(String staffUsername) {
+        return staffMapper.selectByStaffName(staffUsername);
+    }
+
+    public Staff selectByStaffPwd(String staffPwd) {
+        return staffMapper.selectByStaffPwd(staffPwd);
+    }
+
+    public Set<String> getRoles(String staffUsername) {
+        return staffMapper.getRoles(staffUsername);
+    }
+
+    public Set<String> getPermissions(String staffUsername) {
+        return staffMapper.getPermissions(staffUsername);
     }
 }

@@ -39,9 +39,9 @@
 
         <div property="columns">
 
-            <div field="staff_id" width="120" headerAlign="center" allowSort="true">编号</div>
-            <div field="staff_email" width="100%" headerAlign="center" allowSort="true">邮箱</div>
-            <div field="staff_username" width="120" headerAlign="center" allowSort="true">人员姓名</div>
+            <div field="staffId" width="120" headerAlign="center" allowSort="true">编号</div>
+            <div field="staffEmail" width="100%" headerAlign="center" allowSort="true">邮箱</div>
+            <div field="staffUsername" width="120" headerAlign="center" allowSort="true">人员姓名</div>
         </div>
     </div>
 

@@ -12,13 +12,13 @@ import java.util.List;
 /**
  * Created by dllo on 2018/2/28.
  */
-public class StaffTest {
+public class StaffTest extends BaseTest{
 
     private ApplicationContext context;
-//    private StaffMapper staffMapper;
 
     @Before
     public void init(){
+        super.init();
         context = new ClassPathXmlApplicationContext("classpath*:spring-*.xml");
 
     }
@@ -31,6 +31,25 @@ public class StaffTest {
         System.out.println(staffs);
     }
 
+    @Test
+    public void testDao() {
+
+        String staffUsername = "kaka";
+
+        Staff staff = staffMapper.selectByStaffName(staffUsername);
+
+        System.out.println(staff);
+    }
+
+    @Test
+    public void testPwd() {
+
+        String staffPwd = "456";
+
+        Staff staff = staffMapper.selectByStaffPwd(staffPwd);
+
+        System.out.println(staff);
+    }
 //    @Before
 //    public void init(){
 //
